@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kalkulator Badal Kutub</title>
+
+    <head>
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    </head>
+
+</head>
+<style>
+    body {
+        font-family: 'Product Sans', sans-serif;
+        background-color: #f0f0f0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+        background: radial-gradient(60% 90% at 100% 100%, rgba(200, 250, 255, 0.09) 0%, rgba(28, 210, 229, 0.09) 41%, rgba(28, 210, 229, 0) 100%), radial-gradient(44% 64% at 60% 100%, rgba(23, 74, 228, 0.09) 0%, rgba(23, 74, 228, 0) 100%), linear-gradient(180deg, rgba(23, 74, 228, 0) 29.44%, rgba(23, 74, 228, 0.06) 100%), linear-gradient(90deg, #F3F3F7 0%, #edf1f8 100%);
+    }
+
+    #entryForm {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-group {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+
+    .form-group label {
+        width: 30%;
+        /* Adjust as needed */
+    }
+
+    .form-group input {
+        width: 60%;
+        /* Adjust as needed */
+    }
+
+    input {
+        margin: 0px 20px 0px 5px;
+        text-align: center;
+        border-radius: 6px;
+        box-shadow: inset 0px 2px 6px rgba(0, 0, 0, 0.1);
+        border: 1px;
+        font-family: inherit;
+        font-size: large;
+    }
+
+    table {
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    #entries thead {
+        background: linear-gradient(90deg, #006880 10.79%, #005366 87.08%);
+    }
+
+    #entries {
+        width: auto;
+        border-collapse: collapse;
+        border-spacing: 0;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    th{
+        font-weight: normal;
+    }
+
+    #entries th,
+    #entries td {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #entries tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #entries tr:nth-child(odd) {
+        background-color: #e5e4e4;
+    }
+
+    #entries th:nth-child(4) {
+        width: auto;
+        /* Adjust this value as needed */
+    }
+
+
+    #entries th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: center;
+        background: linear-gradient(90deg, #006880 10.79%, #005366 87.08%);
+        color: white;
+    }
+
+    #entries button {
+        border: none;
+        color: #c61d1d;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    #deleteAllButton {
+        font-family: inherit;
+        border: none;
+        color: white;
+        background-color: #a11919;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    #entryForm button[type="submit"] {
+        font-family: inherit;
+        border: none;
+        color: white;
+        background: linear-gradient(90deg, #006880 10.79%, #005366 87.08%);
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+
+    #entries td:last-child {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    @media only screen and (max-width: 600px) {
+
+        input {
+            text-align: center;
+            border-radius: 6px;
+            box-shadow: inset 0px 2px 6px rgba(0, 0, 0, 0.1);
+            border: 1px;
+            font-family: inherit;
+            font-size: large;
+        }
+
+        #entryForm {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .form-group label {
+            width: 30%;
+            /* Adjust as needed */
+        }
+
+        .form-group input {
+            width: 60%;
+            /* Adjust as needed */
+        }
+
+    }
+</style>
+
+<body>
+    <h2>Kalkulator Badal Kutub</h2>
+
+    <form id="entryForm">
+        <div class="form-group">
+            <label for="date">Tanggal:</label>
+            <input type="date" id="date" name="date" required>
+        </div>
+        <div class="form-group">
+            <label for="book">Nama Kitab:</label>
+            <input type="text" id="book" name="book" required>
+        </div>
+        <div class="form-group">
+            <label for="price">Harga:</label>
+            <input type="number" id="price" name="price" required>
+        </div>
+        <button type="submit">Tambahkan</button>
+    </form>
+
+
+    <h3>Detail:</h3>
+    <table id="entries">
+        <tr>
+            <th>Tanggal</th>
+            <th>Nama Kitab</th>
+            <th>Harga</th>
+            <th>Hapus</th>
+        </tr>
+    </table>
+
+    <h3>Budget: $<span id="budget">850</span></h3>
+
+    <button id="deleteAllButton">Hapus Semua</button>
+
+    <script>
+        const entryForm = document.getElementById('entryForm');
+        const deleteAllButton = document.getElementById('deleteAllButton');
+        let budget = localStorage.getItem('budget') || 850;
+        let entries = JSON.parse(localStorage.getItem('entries')) || [];
+
+        entryForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const date = entryForm.date.value;
+            const book = entryForm.book.value;
+            const price = parseFloat(entryForm.price.value);
+
+            if (budget - price >= 0) {
+                entries.push({ date, book, price });
+                localStorage.setItem('entries', JSON.stringify(entries));
+                budget -= price;
+                localStorage.setItem('budget', budget);
+                displayEntries();
+                entryForm.reset();
+            } else {
+                alert('Invalid entry or insufficient budget');
+            }
+        });
+
+        deleteAllButton.addEventListener('click', () => {
+            entries = [];
+            budget = 850;
+            localStorage.clear();
+            displayEntries();
+        });
+
+        function deleteEntry(index) {
+            budget += Number(entries[index].price);
+            entries.splice(index, 1);
+            localStorage.setItem('entries', JSON.stringify(entries));
+            localStorage.setItem('budget', budget);
+            displayEntries();
+        }
+
+        function displayEntries() {
+            const entriesTable = document.getElementById('entries');
+
+            // Clear table rows
+            while (entriesTable.rows.length > 1) {
+                entriesTable.deleteRow(1);
+            }
+
+            // Add new rows
+            entries.forEach((entry, index) => {
+                let row = entriesTable.insertRow(-1);
+                let dateCell = row.insertCell(0);
+                let bookCell = row.insertCell(1);
+                let priceCell = row.insertCell(2);
+                let actionCell = row.insertCell(3);
+
+                dateCell.textContent = entry.date;
+                bookCell.textContent = entry.book;
+                priceCell.textContent = entry.price;
+
+                let deleteButton = document.createElement('button');
+                let deleteIcon = document.createElement('span');
+                deleteIcon.textContent = 'delete_forever';
+                deleteIcon.className = 'material-symbols-rounded';
+                deleteButton.appendChild(deleteIcon);
+                deleteButton.addEventListener('click', () => deleteEntry(index));
+
+                actionCell.appendChild(deleteButton);
+            });
+
+            // Update budget in DOM
+            document.getElementById('budget').textContent = budget;
+        }
+
+        window.onload = displayEntries;
+    </script>
+
+</body>
+
+</html>
