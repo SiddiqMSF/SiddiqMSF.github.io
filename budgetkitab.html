@@ -45,6 +45,14 @@
         /* Adjust as needed */
     }
 
+    select {
+        text-align: center;
+        border-radius: 6px;
+        box-shadow: inset 0px 2px 6px rgba(0, 0, 0, 0.1);
+        border: 1px;
+        font-family: inherit;
+    }
+
     input {
         margin: 0px 20px 0px 5px;
         text-align: center;
@@ -99,7 +107,7 @@
         padding-top: 12px;
         padding-bottom: 12px;
         text-align: center;
-        background: linear-gradient(90deg, #006880 10.79%, #005366 87.08%);
+        background: #005366;
         color: white;
     }
 
@@ -135,10 +143,12 @@
         align-items: center;
         border-radius: 10px;
         box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+        margin: 5%;
     }
 
     #entryForm button[type="submit"] {
         font-family: inherit;
+        width: auto;
         border: none;
         color: white;
         background: linear-gradient(90deg, #006880 10.79%, #005366 87.08%);
@@ -162,6 +172,20 @@
         flex-direction: column;
     }
 
+    #floating-budget {
+        position: fixed;
+        top: 1%;
+        right: 1%;
+        background-color: white;
+        padding: 10px;
+        z-index: 100;
+        border-radius: 10px;
+    }
+
+    h3 {
+        margin: 1vh;
+    }
+
     @media only screen and (max-width: 600px) {
 
         input {
@@ -176,6 +200,7 @@
         #entryForm {
             display: flex;
             flex-direction: column;
+            margin: 5%;
         }
 
         .form-group {
@@ -199,11 +224,22 @@
 
 <body>
     <h2>Kalkulator Badal Kutub</h2>
+    <div class="form-group">
+        <label for="year">Tahun:</label>
+        <select id="year" name="year" required>
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+            <option value="2025">2025</option>
+            <option value="2026">2026</option>
+            <option value="2027">2027</option>
+            <option value="2028">2028</option>
+        </select>
+    </div>
 
     <form id="entryForm">
         <div class="form-group">
             <label for="date">Tanggal:</label>
-            <input type="date" id="date" name="date" required>
+            <input type="date" id="date" name="date">
         </div>
         <div class="form-group">
             <label for="book">Nama Kitab:</label>
@@ -227,28 +263,64 @@
         </tr>
     </table>
 
-    <h3>Budget: $<span id="budget">850</span></h3>
+    <div id="floating-budget">
+        <h3>Budget: <span style="font-size:0.6em;">SAR</span><span id="budget">850</span></h3>
+    </div>
+
 
     <button id="deleteAllButton">Reset</button>
 
     <script>
         const entryForm = document.getElementById('entryForm');
         const deleteAllButton = document.getElementById('deleteAllButton');
-        let budget = localStorage.getItem('budget') || 850;
-        let entries = JSON.parse(localStorage.getItem('entries')) || [];
+        const yearSelect = document.getElementById('year');
+        let currentYear = new Date().getFullYear();
+        let yearlyBudgets = JSON.parse(localStorage.getItem('yearlyBudgets')) || {};
+        let yearlyEntries = JSON.parse(localStorage.getItem('yearlyEntries')) || {};
+
+        if (!yearlyBudgets[currentYear]) {
+            yearlyBudgets[currentYear] = 850;
+        }
+
+        if (!yearlyEntries[currentYear]) {
+            yearlyEntries[currentYear] = [];
+        }
+
+        yearSelect.value = currentYear;
+        budget = yearlyBudgets[currentYear];
+        entries = yearlyEntries[currentYear];
+
+        yearSelect.addEventListener('change', () => {
+            currentYear = yearSelect.value;
+            budget = yearlyBudgets[currentYear] || 850;
+            entries = yearlyEntries[currentYear] || [];
+            displayEntries();
+        });
 
         entryForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            const date = entryForm.date.value;
+            let date = entryForm.date.value;
             const book = entryForm.book.value;
             const price = Math.round(parseFloat(entryForm.price.value));
 
+            // If date is empty, set it to the current date
+            if (!date) {
+                let currentDate = new Date();
+                let day = String(currentDate.getDate()).padStart(2, '0');
+                let month = String(currentDate.getMonth() + 1).padStart(2, '0'); //January is 0!
+                let year = currentDate.getFullYear();
+
+                date = year + '-' + month + '-' + day;
+            }
+
             if (budget - price >= 0) {
                 entries.push({ date, book, price });
-                localStorage.setItem('entries', JSON.stringify(entries));
+                yearlyEntries[currentYear] = entries;
+                localStorage.setItem('yearlyEntries', JSON.stringify(yearlyEntries));
                 budget -= price;
-                localStorage.setItem('budget', budget);
+                yearlyBudgets[currentYear] = budget;
+                localStorage.setItem('yearlyBudgets', JSON.stringify(yearlyBudgets));
                 displayEntries();
                 entryForm.reset();
             } else {
@@ -256,20 +328,25 @@
             }
         });
 
-        function deleteEntry(index) {
-            budget += Math.round(Number(entries[index].price));
-            entries.splice(index, 1);
-            localStorage.setItem('entries', JSON.stringify(entries));
-            localStorage.setItem('budget', budget);
-            displayEntries();
-        }
-
         deleteAllButton.addEventListener('click', () => {
             entries = [];
             budget = 850;
-            localStorage.clear();
+            yearlyEntries[currentYear] = entries;
+            yearlyBudgets[currentYear] = budget;
+            localStorage.setItem('yearlyEntries', JSON.stringify(yearlyEntries));
+            localStorage.setItem('yearlyBudgets', JSON.stringify(yearlyBudgets));
             displayEntries();
         });
+
+        function deleteEntry(index) {
+            budget += Math.round(Number(entries[index].price));
+            entries.splice(index, 1);
+            yearlyEntries[currentYear] = entries;
+            yearlyBudgets[currentYear] = budget;
+            localStorage.setItem('yearlyEntries', JSON.stringify(yearlyEntries));
+            localStorage.setItem('yearlyBudgets', JSON.stringify(yearlyBudgets));
+            displayEntries();
+        }
 
         function displayEntries() {
             const entriesTable = document.getElementById('entries');
@@ -306,6 +383,7 @@
         }
 
         window.onload = displayEntries;
+
     </script>
 
 </body>
