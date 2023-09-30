@@ -71,7 +71,7 @@
         overflow: hidden;
     }
 
-    th{
+    th {
         font-weight: normal;
     }
 
@@ -242,7 +242,7 @@
 
             const date = entryForm.date.value;
             const book = entryForm.book.value;
-            const price = parseFloat(entryForm.price.value);
+            const price = Math.round(parseFloat(entryForm.price.value));
 
             if (budget - price >= 0) {
                 entries.push({ date, book, price });
@@ -256,20 +256,20 @@
             }
         });
 
+        function deleteEntry(index) {
+            budget += Math.round(Number(entries[index].price));
+            entries.splice(index, 1);
+            localStorage.setItem('entries', JSON.stringify(entries));
+            localStorage.setItem('budget', budget);
+            displayEntries();
+        }
+
         deleteAllButton.addEventListener('click', () => {
             entries = [];
             budget = 850;
             localStorage.clear();
             displayEntries();
         });
-
-        function deleteEntry(index) {
-            budget += Number(entries[index].price);
-            entries.splice(index, 1);
-            localStorage.setItem('entries', JSON.stringify(entries));
-            localStorage.setItem('budget', budget);
-            displayEntries();
-        }
 
         function displayEntries() {
             const entriesTable = document.getElementById('entries');
