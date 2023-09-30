@@ -14,15 +14,23 @@
 <style>
     body {
         font-family: 'Product Sans', sans-serif;
-        background-color: #f0f0f0;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        height: 100vh;
-        overflow: hidden;
+        overflow-y: auto;
         background: radial-gradient(60% 90% at 100% 100%, rgba(200, 250, 255, 0.09) 0%, rgba(28, 210, 229, 0.09) 41%, rgba(28, 210, 229, 0) 100%), radial-gradient(44% 64% at 60% 100%, rgba(23, 74, 228, 0.09) 0%, rgba(23, 74, 228, 0) 100%), linear-gradient(180deg, rgba(23, 74, 228, 0) 29.44%, rgba(23, 74, 228, 0.06) 100%), linear-gradient(90deg, #F3F3F7 0%, #edf1f8 100%);
+        background-attachment: fixed;
     }
+
+#page-wrapper
+{
+    display:inherit;
+    flex-direction: inherit;
+    justify-content: inherit;
+    align-items: inherit;
+    margin: 20% 1% 1%;
+}
 
     #entryForm {
         display: flex;
@@ -223,6 +231,7 @@
 </style>
 
 <body>
+    <div id="page-wrapper">
     <h2>Kalkulator Badal Kutub</h2>
     <div class="form-group">
         <label for="year">Tahun:</label>
@@ -269,7 +278,7 @@
 
 
     <button id="deleteAllButton">Reset</button>
-
+</div>
     <script>
         const entryForm = document.getElementById('entryForm');
         const deleteAllButton = document.getElementById('deleteAllButton');
