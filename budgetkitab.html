@@ -402,12 +402,32 @@
             });
         }
 
-        window.addEventListener('beforeinstallprompt', function (event) {
-            event.preventDefault();
+        let deferredPrompt;
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Prevent the mini-infobar from appearing on mobile
+            e.preventDefault();
             // Stash the event so it can be triggered later.
-            deferredPrompt = event;
-            // Update UI notify the user they can add to home screen
-            btnAdd.style.display = 'block';
+            deferredPrompt = e;
+            // Show the install button in your UI.
+            showInstallButton();
+        });
+
+        // When the user clicks the install button...
+        installButton.addEventListener('click', (e) => {
+            // Hide the install button
+            hideInstallButton();
+            // Show the prompt
+            deferredPrompt.prompt();
+            // Wait for the user to respond to the prompt
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('User accepted the install prompt');
+                } else {
+                    console.log('User dismissed the install prompt');
+                }
+                deferredPrompt = null;
+            });
         });
 
     </script>
