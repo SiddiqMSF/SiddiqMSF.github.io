@@ -403,6 +403,12 @@
 
         let deferredPrompt;
 
+        // Check if the beforeinstallprompt event has already fired
+        if (window.BeforeInstallPromptEvent) {
+            deferredPrompt = window.BeforeInstallPromptEvent;
+            document.getElementById('installButton').style.display = 'block';
+        }
+
         window.addEventListener('beforeinstallprompt', (e) => {
             // Prevent Chrome 67 and earlier from automatically showing the prompt
             e.preventDefault();
@@ -428,6 +434,7 @@
                 deferredPrompt = null;
             });
         });
+
     </script>
 
 </body>

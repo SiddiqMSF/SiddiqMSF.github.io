@@ -1,7 +1,7 @@
 {
     "name": "Badal Kutub Tracker",
     "short_name": "Badal Kutub",
-    "start_url": "/",
+    "start_url": "/budgetkitab.html",
     "display": "standalone",
     "background_color": "#fff",
     "description": "Mendata Budget Badal Kutub.",
