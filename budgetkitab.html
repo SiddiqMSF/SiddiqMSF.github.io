@@ -227,7 +227,7 @@
     <main>
         <div class="form-group">
             <label for="language" data-i18n="languageLabel">Language:</label>
-            <select id="language" name="language">
+            <select id="languageDropdown" name="language">
                 <option value="en" data-i18n="english">English</option>
                 <option value="id" data-i18n="indonesian">Indonesian</option>
                 <option value="ar" data-i18n="arabic">Arabic</option>
@@ -383,7 +383,6 @@
             });
         }
 
-        // Load language files
         let languages = {};
         fetch('/languages/en.json')
             .then(response => response.json())
@@ -395,15 +394,17 @@
             .then(response => response.json())
             .then(data => { languages['ar'] = data; });
 
-        // Function to change language
         function changeLanguage(lang) {
-            let elements = document.querySelectorAll('[data-i18n]');
+            let elements = document.querySelectorAll('[data-i18n], [data-i18n-html]');
             elements.forEach((element) => {
-                let i18nKey = element.getAttribute('data-i18n');
-                element.textContent = languages[lang][i18nKey];
+                let i18nKey = element.getAttribute('data-i18n') || element.getAttribute('data-i18n-html');
+                if (element.hasAttribute('data-i18n')) {
+                    element.textContent = languages[lang][i18nKey];
+                } else if (element.hasAttribute('data-i18n-html')) {
+                    element.innerHTML = languages[lang][i18nKey];
+                }
             });
 
-            // Handle RTL layout
             if (lang === 'ar') {
                 document.body.setAttribute('dir', 'rtl');
             } else {
@@ -411,8 +412,7 @@
             }
         }
 
-        // Event listener for language dropdown
-        document.getElementById('language').addEventListener('change', (event) => {
+        document.getElementById('languageDropdown').addEventListener('change', (event) => {
             changeLanguage(event.target.value);
         });
 
