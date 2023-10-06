@@ -1,12 +1,15 @@
 {
-    "title": "متتبع الكتب",
-    "year": "السنة",
-    "date": "التاريخ",
-    "book": "اسم الكتاب",
-    "price": "السعر",
-    "add": "إضافة",
-    "details": "التفاصيل",
-    "delete": "حذف",
-    "budget": "الميزانية",
-    "reset": "إعادة تعيين"
+    "title": "متتبع بدل الكتب",
+    "yearLabel": "السنة:",
+    "dateLabel": "التاريخ:",
+    "bookLabel": "اسم الكتاب:",
+    "priceLabel": "السعر:",
+    "addButton": "أضف",
+    "detailsTitle": "التفاصيل:",
+    "dateColumn": "التاريخ",
+    "bookColumn": "اسم الكتاب",
+    "priceColumn": "السعر",
+    "deleteColumn": "حذف",
+    "budgetTitle": "<span id='budget'>850</span> :الميزانية",
+    "resetButton": "إعادة تعيين"
 }

@@ -1,12 +1,15 @@
 {
-    "title": "Book Tracker",
-    "year": "Year",
-    "date": "Date",
-    "book": "Book Name",
-    "price": "Price",
-    "add": "Add",
-    "details": "Details",
-    "delete": "Delete",
-    "budget": "Budget",
-    "reset": "Reset"
+    "title": "Badal Kutub Tracker",
+    "yearLabel": "Year:",
+    "dateLabel": "Date:",
+    "bookLabel": "Book Name:",
+    "priceLabel": "Price:",
+    "addButton": "Add",
+    "detailsTitle": "Details:",
+    "dateColumn": "Date",
+    "bookColumn": "Book Name",
+    "priceColumn": "Price",
+    "deleteColumn": "Delete",
+    "budgetTitle": "Budget: <span id='budget'>850</span>",
+    "resetButton": "Reset"
 }
