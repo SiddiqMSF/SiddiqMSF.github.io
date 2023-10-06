@@ -1,4 +1,4 @@
-const CACHE_NAME = 'budgetkitab-cache-v0.2';
+const CACHE_NAME = 'budgetkitab-cache-v3';
 const urlsToCache = [
   '/',
   '/index.html',
