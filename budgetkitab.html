@@ -22,7 +22,7 @@
         background-attachment: fixed;
     }
 
-    #page-wrapper {
+    main {
         display: inherit;
         flex-direction: inherit;
         justify-content: inherit;
@@ -224,7 +224,7 @@
 </style>
 
 <body>
-    <div id="page-wrapper">
+    <main>
         <h2>Badal Kutub Tracker</h2>
         <div class="form-group">
             <label for="year">Tahun:</label>
@@ -264,8 +264,7 @@
 
 
         <button id="deleteAllButton">Reset</button>
-        <button id="installButton" style="display: none;">Install</button>
-    </div>
+    </main>
 
     <script>
         const [entryForm, deleteAllButton, yearSelect] = ['entryForm', 'deleteAllButton', 'year'].map(id => document.getElementById(id));
@@ -295,12 +294,12 @@
             });
             document.getElementById('budget').textContent = budget;
 
-
             let budgetElement = document.getElementById('budget');
+            let color;
             if (budget >= 850) {
-                budgetElement.style.color = 'green';
+                color = 'green';
             } else if (budget <= 0) {
-                budgetElement.style.color = 'red';
+                color = 'red';
             } else {
                 let percentGreen;
                 let redRGB = [255, 0, 0];
@@ -308,16 +307,16 @@
                 let greenRGB = [0, 128, 0];
                 let mixedRGB;
 
-                if (budget <= 425) {
-                    percentGreen = budget / 425;
-                    mixedRGB = redRGB.map((val, i) => Math.round(val * (1 - percentGreen) + orangeRGB[i] * percentGreen));
+                percentGreen = budget / 850;
+                if (percentGreen <= 0.5) {
+                    mixedRGB = redRGB.map((val, i) => Math.round(val * (1 - percentGreen * 2) + orangeRGB[i] * percentGreen * 2));
                 } else {
-                    percentGreen = (budget - 425) / 425;
-                    mixedRGB = orangeRGB.map((val, i) => Math.round(val * (1 - percentGreen) + greenRGB[i] * percentGreen));
+                    mixedRGB = orangeRGB.map((val, i) => Math.round(val * (1 - (percentGreen - 0.5) * 2) + greenRGB[i] * (percentGreen - 0.5) * 2));
                 }
 
-                budgetElement.style.color = `rgb(${mixedRGB.join(',')})`;
+                color = `rgb(${mixedRGB.join(',')})`;
             }
+            budgetElement.style.color = color;
         };
 
         const deleteEntry = index => {
