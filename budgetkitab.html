@@ -22,6 +22,10 @@
         background-attachment: fixed;
     }
 
+    .rtl {
+        direction: rtl;
+    }
+
     main {
         display: inherit;
         flex-direction: inherit;
@@ -225,6 +229,11 @@
 
 <body>
     <main>
+        <select id="language" onchange="changeLanguage(this.value)">
+            <option value="en">English</option>
+            <option value="id">Indonesian</option>
+            <option value="ar">Arabic</option>
+        </select>
         <h2>Badal Kutub Tracker</h2>
         <div class="form-group">
             <label for="year">Tahun:</label>
@@ -247,7 +256,6 @@
             <button type="submit">Tambahkan</button>
         </form>
 
-
         <h3>Detail:</h3>
         <table id="entries">
             <tr>
@@ -261,7 +269,6 @@
         <div id="floating-budget">
             <h3>Budget: <span id="budget">850</span></h3>
         </div>
-
 
         <button id="deleteAllButton">Reset</button>
     </main>
@@ -365,6 +372,36 @@
             .forEach(year => select.add(new Option(year, year)));
 
         window.onload = displayEntries;
+
+        function changeLanguage(language) {
+            fetch(`languages/${language}.json`)
+                .then(response => response.json())
+                .then(data => {
+                    // data now contains the translations from your language file
+                    // You can use it to replace the text on your page
+                    document.querySelector('h2').textContent = data.title;
+                    document.querySelector('label[for="year"]').textContent = data.year;
+                    document.querySelector('label[for="date"]').textContent = data.date;
+                    document.querySelector('label[for="book"]').textContent = data.book;
+                    document.querySelector('label[for="price"]').textContent = data.price;
+                    document.querySelector('#entryForm button').textContent = data.add;
+                    document.querySelector('h3').textContent = data.details;
+                    document.querySelectorAll('#entries th')[0].textContent = data.date;
+                    document.querySelectorAll('#entries th')[1].textContent = data.book;
+                    document.querySelectorAll('#entries th')[2].textContent = data.price;
+                    document.querySelectorAll('#entries th')[3].textContent = data.delete;
+                    document.querySelector('#floating-budget h3').innerHTML = `${data.budget}: <span id="budget">850</span>`;
+                    document.querySelector('#deleteAllButton').textContent = data.reset;
+
+                    // If the selected language is RTL, add 'rtl' class to body
+                    if (language === 'ar') {
+                        document.body.classList.add('rtl');
+                    } else {
+                        document.body.classList.remove('rtl');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
 
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', async () => {
