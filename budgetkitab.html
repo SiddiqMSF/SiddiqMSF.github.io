@@ -296,30 +296,7 @@
                 row.insertCell(3).appendChild(deleteButton);
             });
             document.getElementById('budget').textContent = budget;
-
-            let budgetElement = document.getElementById('budget');
-            let color;
-            if (budget >= 850) {
-                color = 'green';
-            } else if (budget <= 0) {
-                color = 'red';
-            } else {
-                let percentGreen;
-                let redRGB = [255, 0, 0];
-                let orangeRGB = [255, 165, 0];
-                let greenRGB = [0, 128, 0];
-                let mixedRGB;
-
-                percentGreen = budget / 850;
-                if (percentGreen <= 0.5) {
-                    mixedRGB = redRGB.map((val, i) => Math.round(val * (1 - percentGreen * 2) + orangeRGB[i] * percentGreen * 2));
-                } else {
-                    mixedRGB = orangeRGB.map((val, i) => Math.round(val * (1 - (percentGreen - 0.5) * 2) + greenRGB[i] * (percentGreen - 0.5) * 2));
-                }
-
-                color = `rgb(${mixedRGB.join(',')})`;
-            }
-            budgetElement.style.color = color;
+            updateBudgetColor();
         };
 
         const deleteEntry = index => {
@@ -368,6 +345,25 @@
             .forEach(year => select.add(new Option(year, year)));
 
         window.onload = displayEntries;
+
+        const updateBudgetColor = () => {
+            const budgetElement = document.getElementById('budget');
+            const colors = { green: [0, 128, 0], orange: [255, 165, 0], red: [255, 0, 0] };
+            let color;
+
+            if (budget >= 850) {
+                color = 'green';
+            } else if (budget <= 0) {
+                color = 'red';
+            } else {
+                const percentGreen = budget / 850;
+                const [startColor, endColor] = percentGreen <= 0.5 ? ['red', 'orange'] : ['orange', 'green'];
+                const mixedRGB = colors[startColor].map((val, i) => Math.round(val * (1 - percentGreen * 2) + colors[endColor][i] * percentGreen * 2));
+                color = `rgb(${mixedRGB.join(',')})`;
+            }
+
+            budgetElement.style.color = color;
+        };
 
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', async () => {
