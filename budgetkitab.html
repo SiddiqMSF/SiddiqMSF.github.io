@@ -225,51 +225,45 @@
 
 <body>
     <main>
+        <h2>Badal Kutub Tracker</h2>
         <div class="form-group">
-            <label for="language" data-i18n="languageLabel">Language:</label>
-            <select id="languageDropdown" name="language">
-                <option value="en" data-i18n="english">English</option>
-                <option value="id" data-i18n="indonesian">Indonesian</option>
-                <option value="ar" data-i18n="arabic">Arabic</option>
-            </select>
-        </div>
-        <h2 data-i18n="title">Badal Kutub Tracker</h2>
-        <div class="form-group">
-            <label for="year" data-i18n="yearLabel">Tahun:</label>
+            <label for="year">Tahun:</label>
             <select id="year" name="year" required></select>
         </div>
 
         <form id="entryForm">
             <div class="form-group">
-                <label for="date" data-i18n="dateLabel">Tanggal:</label>
+                <label for="date">Tanggal:</label>
                 <input type="date" id="date" name="date">
             </div>
             <div class="form-group">
-                <label for="book" data-i18n="bookLabel">Nama Kitab:</label>
+                <label for="book">Nama Kitab:</label>
                 <input type="text" id="book" name="book" required>
             </div>
             <div class="form-group">
-                <label for="price" data-i18n="priceLabel">Harga:</label>
+                <label for="price">Harga:</label>
                 <input type="number" id="price" name="price" required>
             </div>
-            <button type="submit" data-i18n="addButton">Tambahkan</button>
+            <button type="submit">Tambahkan</button>
         </form>
 
-        <h3 data-i18n="detailsTitle">Detail:</h3>
+
+        <h3>Detail:</h3>
         <table id="entries">
             <tr>
-                <th data-i18n="dateColumn">Tanggal</th>
-                <th data-i18n="bookColumn">Nama Kitab</th>
-                <th data-i18n="priceColumn">Harga</th>
-                <th data-i18n="deleteColumn">Hapus</th>
+                <th>Tanggal</th>
+                <th>Nama Kitab</th>
+                <th>Harga</th>
+                <th>Hapus</th>
             </tr>
         </table>
 
         <div id="floating-budget">
-            <h3 data-i18n-html="budgetTitle">Budget: <span id="budget">850</span></h3>
+            <h3>Budget: <span id="budget">850</span></h3>
         </div>
 
-        <button id="deleteAllButton" data-i18n="resetButton">Reset</button>
+
+        <button id="deleteAllButton">Reset</button>
     </main>
 
     <script>
@@ -382,40 +376,6 @@
                 }
             });
         }
-
-        let languages = {};
-        fetch('/languages/en.json')
-            .then(response => response.json())
-            .then(data => { languages['en'] = data; });
-        fetch('/languages/id.json')
-            .then(response => response.json())
-            .then(data => { languages['id'] = data; });
-        fetch('/languages/ar.json')
-            .then(response => response.json())
-            .then(data => { languages['ar'] = data; });
-
-        function changeLanguage(lang) {
-            let elements = document.querySelectorAll('[data-i18n], [data-i18n-html]');
-            elements.forEach((element) => {
-                let i18nKey = element.getAttribute('data-i18n') || element.getAttribute('data-i18n-html');
-                if (element.hasAttribute('data-i18n')) {
-                    element.textContent = languages[lang][i18nKey];
-                } else if (element.hasAttribute('data-i18n-html')) {
-                    element.innerHTML = languages[lang][i18nKey];
-                }
-            });
-
-            if (lang === 'ar') {
-                document.body.setAttribute('dir', 'rtl');
-            } else {
-                document.body.setAttribute('dir', 'ltr');
-            }
-        }
-
-        document.getElementById('languageDropdown').addEventListener('change', (event) => {
-            changeLanguage(event.target.value);
-        });
-
     </script>
 
 </body>
