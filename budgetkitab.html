@@ -339,24 +339,21 @@ Array.from({ length: 6 }, (_, i) => i + currentYear)
 
 window.onload = displayEntries;
 
-        const updateBudgetColor = () => {
-            const budgetElement = document.getElementById('budget');
-            const colors = { green: [0, 128, 0], orange: [255, 165, 0], red: [255, 0, 0] };
-            let color;
+const updateBudgetColor = () => {
+  const budgetElement = document.getElementById('budget');
+  const colors = { green: [0, 128, 0], orange: [255, 165, 0], red: [255, 0, 0] };
+  let color;
 
-            if (budget >= 850) {
-                color = 'green';
-            } else if (budget <= 0) {
-                color = 'red';
-            } else {
-                const percentGreen = budget / 850;
-                const [startColor, endColor] = percentGreen <= 0.5 ? ['red', 'orange'] : ['orange', 'green'];
-                const mixedRGB = colors[startColor].map((val, i) => Math.round(val * (1 - percentGreen * 2) + colors[endColor][i] * percentGreen * 2));
-                color = `rgb(${mixedRGB.join(',')})`;
-            }
+  color = budget >= 850 ? 'green' : budget <= 0 ? 'red' : (() => {
+    const percentGreen = budget / 850;
+    const [startColor, endColor] = percentGreen <= 0.5 ? ['red', 'orange'] : ['orange', 'green'];
+    const mixedRGB = colors[startColor].map((val, i) => Math.round(val * (1 - percentGreen * 2) + colors[endColor][i] * percentGreen * 2));
+    return `rgb(${mixedRGB.join(',')})`;
+  })();
 
-            budgetElement.style.color = color;
-        };
+  budgetElement.style.color = color;
+};
+
 
     </script>
 
