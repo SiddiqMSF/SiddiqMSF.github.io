@@ -281,17 +281,20 @@ const updateLocalStorage = () => {
 
 const displayEntries = () => {
   const entriesTable = document.getElementById('entries');
-  entriesTable.innerHTML = entries.map((entry, index) => `
-    <tr>
-      <td>${entry.date}</td>
-      <td>${entry.book}</td>
-      <td>${entry.price}</td>
-      <td><button onclick="deleteEntry(${index})"><span class="material-symbols-rounded">delete_forever</span></button></td>
-    </tr>
-  `).join('');
+  const rows = entriesTable.getElementsByTagName('tr');
+  while (rows.length > 1) entriesTable.deleteRow(1);
+  entries.forEach((entry, index) => {
+    let row = entriesTable.insertRow(-1);
+    ['date', 'book', 'price'].forEach((key, i) => row.insertCell(i).textContent = entry[key]);
+    let deleteButton = document.createElement('button');
+    deleteButton.innerHTML = '<span class="material-symbols-rounded">delete_forever</span>';
+    deleteButton.addEventListener('click', () => deleteEntry(index));
+    row.insertCell(3).appendChild(deleteButton);
+  });
   document.getElementById('budget').textContent = budget;
   updateBudgetColor();
 };
+
 
 const deleteEntry = index => {
   budget += Math.round(Number(entries[index].price));
