@@ -12,354 +12,56 @@
     <link href="https://fonts.cdnfonts.com/css/product-sans" rel="stylesheet">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="styles\budgetkitab.css">
 </head>
-<style>
-    body {
-        font-family: 'Product Sans', sans-serif;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        overflow-y: auto;
-        background: linear-gradient(90deg, rgb(236, 242, 245) 0%, 1.3089%, rgb(234, 243, 245) 2.6178%, 17.4084%, rgb(232, 241, 242) 32.199%, 36.2565%, rgb(229, 241, 242) 40.3141%, 45.0262%, rgb(227, 240, 242) 49.7382%, 51.8325%, rgb(226, 239, 245) 53.9267%, 57.199%, rgb(224, 239, 245) 60.4712%, 62.9581%, rgb(220, 237, 245) 65.445%, 66.2304%, rgb(220, 237, 245) 67.0157%, 68.0628%, rgb(218, 236, 244) 69.1099%, 75.1309%, rgb(214, 233, 240) 81.1518%, 82.5916%, rgb(211, 231, 240) 84.0314%, 84.4241%, rgb(212, 231, 239) 84.8168%, 86.911%, rgb(210, 230, 239) 89.0052%, 94.5026%, rgb(207, 227, 236) 100%);
-        background-attachment: fixed;
-    }
-
-    main {
-        display: inherit;
-        flex-direction: inherit;
-        justify-content: inherit;
-        align-items: inherit;
-        margin: 6em 0.1em 0.1em;
-    }
-
-    #entryForm {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .form-group {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 10px;
-    }
-
-    .form-group label {
-        width: 30%;
-    }
-
-    .form-group input {
-        width: 60%;
-    }
-
-    select {
-        text-align: center;
-        border-radius: 6px;
-        box-shadow: inset 0px 2px 6px rgba(0, 0, 0, 0.1);
-        border: 1px;
-        font-family: inherit;
-    }
-
-    input {
-        margin: 0px 20px 0px 5px;
-        text-align: center;
-        border-radius: 6px;
-        box-shadow: inset 0px 2px 6px rgba(0, 0, 0, 0.1);
-        border: 1px;
-        font-family: inherit;
-        font-size: large;
-    }
-
-    table {
-        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    #entries thead {
-        background: linear-gradient(90deg, #006880 10.79%, #005366 87.08%);
-    }
-
-    #entries {
-        width: auto;
-        border-collapse: collapse;
-        border-spacing: 0;
-        border-radius: 10px;
-        overflow: hidden;
-    }
-
-    th {
-        font-weight: normal;
-    }
-
-    #entries th,
-    #entries td {
-        border: 1px solid #dddddd7a;
-        padding: 8px;
-    }
-
-    #entries tr:nth-child(even) {
-        background-color: #f2f2f2;
-    }
-
-    #entries tr:nth-child(odd) {
-        background-color: #e5e4e4;
-    }
-
-    #entries th:nth-child(4) {
-        width: auto;
-    }
-
-
-    #entries th {
-        padding-top: 12px;
-        padding-bottom: 12px;
-        text-align: center;
-        background: #005366;
-        color: white;
-    }
-
-    #entries button {
-        border: none;
-        color: #c61d1d;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 10px;
-        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    #deleteAllButton {
-        font-family: inherit;
-        border: none;
-        color: white;
-        background-color: #a11919;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 10px;
-        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
-        margin: 5%;
-    }
-
-    #entryForm button[type="submit"] {
-        font-family: inherit;
-        width: auto;
-        border: none;
-        color: white;
-        background: linear-gradient(90deg, #006880 10.79%, #005366 87.08%);
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 10px;
-        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
-    }
-
-
-    #entries td:last-child {
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-    }
-
-    #floating-budget {
-        position: fixed;
-        top: 1%;
-        right: 1%;
-        background-color: white;
-        padding: 10px;
-        z-index: 100;
-        border-radius: 10px;
-    }
-
-    h3 {
-        margin: 1vh;
-    }
-
-    @media only screen and (max-width: 600px) {
-
-        input {
-            text-align: center;
-            border-radius: 6px;
-            box-shadow: inset 0px 2px 6px rgba(0, 0, 0, 0.1);
-            border: 1px;
-            font-family: inherit;
-            font-size: large;
-        }
-
-        #entryForm {
-            display: flex;
-            flex-direction: column;
-            margin: 5%;
-        }
-
-        .form-group {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-        }
-
-        .form-group label {
-            width: 30%;
-        }
-
-        .form-group input {
-            width: 60%;
-        }
-
-    }
-</style>
 
 <body>
     <main>
-        <h2>Badal Kutub Tracker</h2>
+        <select id="lang" onchange="applyTranslation(this.value)">
+            <option value="en">English</option>
+            <option value="id">Indonesian</option>
+        </select>        
+        <h2 data-i18n>Badal Kutub Tracker</h2>
         <div class="form-group">
-            <label for="year">Tahun:</label>
+            <label for="year" data-i18n>Year:</label>
             <select id="year" name="year" required></select>
         </div>
 
         <form id="entryForm">
             <div class="form-group">
-                <label for="date">Tanggal:</label>
+                <label for="date" data-i18n>Date:</label>
                 <input type="date" id="date" name="date">
             </div>
             <div class="form-group">
-                <label for="book">Nama Kitab:</label>
+                <label for="book" data-i18n>Book Name:</label>
                 <input type="text" id="book" name="book" required>
             </div>
             <div class="form-group">
-                <label for="price">Harga:</label>
+                <label for="price" data-i18n>Price:</label>
                 <input type="number" id="price" name="price" required>
             </div>
-            <button type="submit">Tambahkan</button>
+            <button type="submit" data-i18n>Add</button>
         </form>
 
 
-        <h3>Detail:</h3>
+        <h3 data-i18n>Details:</h3>
         <table id="entries">
             <tr>
-                <th>Tanggal</th>
-                <th>Nama Kitab</th>
-                <th>Harga</th>
-                <th>Hapus</th>
+                <th data-i18n>Date</th>
+                <th data-i18n>Book Name</th>
+                <th data-i18n>Price</th>
+                <th data-i18n>Delete</th>
             </tr>
         </table>
 
         <div id="floating-budget">
-            <h3>Budget: <span id="budget">850</span></h3>
+            <h3 data-i18n>Budget: <span id="budget">850</span></h3>
         </div>
 
-
-        <button id="deleteAllButton">Reset</button>
+        <button id="deleteAllButton" data-i18n>Reset</button>
     </main>
-
-    <script>
-        const [entryForm, deleteAllButton, yearSelect] = ['entryForm', 'deleteAllButton', 'year'].map(id => document.getElementById(id));
-        let [currentYear, yearlyBudgets, yearlyEntries] = [new Date().getFullYear(), JSON.parse(localStorage.getItem('yearlyBudgets')) || {}, JSON.parse(localStorage.getItem('yearlyEntries')) || {}];
-        let [budget, entries] = [yearlyBudgets[currentYear] ||= 850, yearlyEntries[currentYear] ||= []];
-
-        const updateLocalStorage = () => {
-            localStorage.setItem('yearlyEntries', JSON.stringify(yearlyEntries));
-            localStorage.setItem('yearlyBudgets', JSON.stringify(yearlyBudgets));
-        };
-
-        const displayEntries = () => {
-            const entriesTable = document.getElementById('entries');
-            const rows = entriesTable.getElementsByTagName('tr');
-            while (rows.length > 1) entriesTable.deleteRow(1);
-            entries.forEach((entry, index) => {
-                let row = entriesTable.insertRow(-1);
-                ['date', 'book', 'price'].forEach((key, i) => row.insertCell(i).textContent = entry[key]);
-                let deleteButton = document.createElement('button');
-                deleteButton.innerHTML = '<span class="material-symbols-rounded">delete_forever</span>';
-                deleteButton.addEventListener('click', () => deleteEntry(index));
-                row.insertCell(3).appendChild(deleteButton);
-            });
-            document.getElementById('budget').textContent = budget;
-            updateBudgetColor();
-        };
-
-
-        const deleteEntry = index => {
-            budget += Math.round(Number(entries[index].price));
-            entries.splice(index, 1);
-            yearlyEntries[currentYear] = entries;
-            yearlyBudgets[currentYear] = budget;
-            updateLocalStorage();
-            displayEntries();
-        };
-
-        yearSelect.addEventListener('change', () => {
-            currentYear = yearSelect.value;
-            budget = yearlyBudgets[currentYear] ||= 850;
-            entries = yearlyEntries[currentYear] ||= [];
-            displayEntries();
-        });
-
-        entryForm.addEventListener('submit', e => {
-            e.preventDefault();
-            let { date, book, price } = entryForm;
-            price = Math.round(parseFloat(price.value));
-
-            if (!date.value) date.value = new Date().toISOString().split('T')[0];
-
-            if (budget - price >= 0) {
-                entries.push({ date: date.value, book: book.value, price });
-                yearlyEntries[currentYear] = entries;
-                budget -= price;
-                yearlyBudgets[currentYear] = budget;
-                updateLocalStorage();
-                displayEntries();
-                entryForm.reset();
-            } else alert('Invalid entry or insufficient budget');
-        });
-
-        deleteAllButton.addEventListener('click', () => {
-            entries.length = budget = yearlyBudgets[currentYear] = 850;
-            yearlyEntries[currentYear] = entries;
-            updateLocalStorage();
-            displayEntries();
-        });
-
-        Array.from({ length: 6 }, (_, i) => i + currentYear)
-            .forEach(year => yearSelect.add(new Option(year, year)));
-
-        window.onload = displayEntries;
-
-        const updateBudgetColor = () => {
-            const budgetElement = document.getElementById('budget');
-            const colors = { green: [0, 128, 0], orange: [255, 165, 0], red: [255, 0, 0] };
-            let color;
-
-            color = budget >= 850 ? 'green' : budget <= 0 ? 'red' : (() => {
-                const percentGreen = budget / 850;
-                const [startColor, endColor] = percentGreen <= 0.5 ? ['red', 'orange'] : ['orange', 'green'];
-                const mixedRGB = colors[startColor].map((val, i) => Math.round(val * (1 - percentGreen * 2) + colors[endColor][i] * percentGreen * 2));
-                return `rgb(${mixedRGB.join(',')})`;
-            })();
-
-            budgetElement.style.color = color;
-        };
-
-
-    </script>
-
+    <script src="script\budgetkitab.js"></script>
+    </main>
 </body>
 
 </html>
