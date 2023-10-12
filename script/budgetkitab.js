@@ -11,12 +11,12 @@ const displayEntries = () => {
     const entriesTable = document.getElementById('entries');
     const rows = entriesTable.getElementsByTagName('tr');
     while (rows.length > 1) entriesTable.deleteRow(1);
-    entries.forEach((entry, index) => {
+    entries.forEach((entry) => {
         let row = entriesTable.insertRow(-1);
         ['date', 'book', 'price'].forEach((key, i) => row.insertCell(i).textContent = entry[key]);
         let deleteButton = document.createElement('button');
         deleteButton.innerHTML = '<span class="material-symbols-rounded">delete_forever</span>';
-        deleteButton.addEventListener('click', () => deleteEntry(index));
+        deleteButton.addEventListener('click', () => deleteEntry(entry.id));
         row.insertCell(3).appendChild(deleteButton);
     });
     document.getElementById('budget').textContent = budget;
