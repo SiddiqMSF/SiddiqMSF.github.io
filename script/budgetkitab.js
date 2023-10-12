@@ -71,6 +71,7 @@ window.onload = displayEntries;
 
 const updateBudgetColor = () => {
     const budgetElement = document.getElementById('budget');
+    const budget = calculateBudget();
     const colors = { green: [0, 128, 0], orange: [255, 165, 0], red: [255, 0, 0] };
     let color;
 
