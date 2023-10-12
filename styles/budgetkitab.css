@@ -9,7 +9,7 @@ body {
     background-attachment: fixed;
 }
 
-#lang {
+#lang option {
     font-family: 'Noto Color Emoji', sans-serif;
 }
 
