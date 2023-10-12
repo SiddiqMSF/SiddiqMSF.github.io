@@ -9,16 +9,18 @@ body {
     background-attachment: fixed;
 }
 
-#lang option {
-    font-family: 'Noto Color Emoji', sans-serif;
-}
-
 main {
     display: inherit;
     flex-direction: inherit;
     justify-content: inherit;
     align-items: inherit;
     margin: 6em 0.1em 0.1em;
+}
+
+#lang-selector {
+    position: absolute;
+    top: 1em;
+    left: 1em;
 }
 
 #entryForm {
@@ -43,9 +45,9 @@ main {
 select {
     text-align: center;
     border-radius: 6px;
-    box-shadow: inset 0px 2px 6px rgba(0, 0, 0, 0.1);
     border: 1px;
     font-family: inherit;
+    background-color: transparent;
 }
 
 input {
