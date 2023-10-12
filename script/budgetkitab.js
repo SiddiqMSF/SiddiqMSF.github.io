@@ -79,7 +79,7 @@ const updateBudgetColor = () => {
 
     let color;
     if (budget >= halfBudget) {
-        const green = [0, 255, 0];
+        const green = [0, 128, 0];
         const orange = [255, 165, 0];
         const ratio = (budget - halfBudget) / (maxBudget - halfBudget);
         color = interpolateColor(orange, green, ratio);
