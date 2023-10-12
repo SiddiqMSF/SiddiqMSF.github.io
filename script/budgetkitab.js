@@ -14,20 +14,25 @@ const calculateBudget = () => {
     return 850 - totalSpent;
 };
 
-const displayEntries = () => {
-    const entriesTable = document.getElementById('entries');
-    while (entriesTable.rows.length > 1) entriesTable.deleteRow(1);
-    entries.forEach((entry, index) => {
-        let row = entriesTable.insertRow(-1);
-        ['date', 'book', 'price'].forEach((key, i) => row.insertCell(i).textContent = entry[key]);
-        let deleteButton = document.createElement('button');
-        deleteButton.innerHTML = '<span class="material-symbols-rounded">delete_forever</span>';
-        deleteButton.addEventListener('click', () => deleteEntry(index));
-        row.insertCell(3).appendChild(deleteButton);
-    });
-    document.getElementById('budget').textContent = calculateBudget();
-    updateBudgetColor();
-};
+entryForm.addEventListener('submit', e => {
+    e.preventDefault();
+    let { date, book, price } = entryForm;
+    price = Math.round(parseFloat(price.value));
+    if (!date.value) date.value = new Date().toISOString().split('T')[0];
+    
+    // Calculate new budget before adding entry
+    const newBudget = calculateBudget() - price;
+    
+    if (newBudget < 0) {
+        alert('Warning: Your budget is now negative');
+    }
+    
+    entries.push({ date: date.value, book: book.value, price });
+    yearlyEntries[currentYear] = entries;
+    updateLocalStorage();
+    displayEntries();
+    entryForm.reset();
+});
 
 const deleteEntry = index => {
     entries.splice(index, 1);
@@ -79,7 +84,7 @@ const updateBudgetColor = () => {
     budget = Math.max(0, Math.min(budget, 850));
 
     color = budget >= 850 ? 'green' : budget <= 0 ? 'red' : (() => {
-        const percentGreen = budget / 850;
+        const percentGreen = budget <= 425 ? (budget / 425) * 0.5 : ((budget - 425) / (850 - 425)) * 0.5 + 0.5;
         const [startColor, endColor] = percentGreen <= 0.5 ? ['red', 'orange'] : ['orange', 'green'];
         const mixedRGB = colors[startColor].map((val, i) => Math.round(val * (1 - percentGreen * 2) + colors[endColor][i] * percentGreen * 2));
         return `rgb(${mixedRGB.join(',')})`;
