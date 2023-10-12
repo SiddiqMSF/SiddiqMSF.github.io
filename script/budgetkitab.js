@@ -71,9 +71,12 @@ window.onload = displayEntries;
 
 const updateBudgetColor = () => {
     const budgetElement = document.getElementById('budget');
-    const budget = calculateBudget();
+    let budget = calculateBudget();
     const colors = { green: [0, 128, 0], orange: [255, 165, 0], red: [255, 0, 0] };
     let color;
+
+    // Ensure budget is within the range of 0 to 850
+    budget = Math.max(0, Math.min(budget, 850));
 
     color = budget >= 850 ? 'green' : budget <= 0 ? 'red' : (() => {
         const percentGreen = budget / 850;
