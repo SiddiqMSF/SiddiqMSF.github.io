@@ -1,5 +1,5 @@
 function applyTranslation(lang) {
-    fetch(lang + '.json')
+    fetch('languages/' + lang + '.json')
         .then(response => response.json())
         .then(data => {
             document.querySelectorAll('[data-i18n]').forEach(elem => {
