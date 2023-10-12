@@ -4,7 +4,9 @@ function applyTranslation(lang) {
         .then(data => {
             document.querySelectorAll('[data-i18n]').forEach(elem => {
                 let key = elem.getAttribute('data-i18n');
-                elem.childNodes[0].textContent = data[key] || elem.childNodes[0].textContent;
+                if (elem.childNodes[0].nodeType === Node.TEXT_NODE) {
+                    elem.childNodes[0].textContent = data[key] || elem.childNodes[0].textContent;
+                }
             });
         });
 }
