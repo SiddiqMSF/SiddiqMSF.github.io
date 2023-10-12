@@ -9,6 +9,10 @@ body {
     background-attachment: fixed;
 }
 
+.lang {
+    font-family: arial;
+}
+
 main {
     display: inherit;
     flex-direction: inherit;
