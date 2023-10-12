@@ -1,27 +1,18 @@
-function downloadEntries() {
-    // Prepare CSV content
-    let csvContent = 'Year,Date,Book,Price\n';
+document.getElementById('downloadButton').addEventListener('click', () => {
+    const csvContent = Object.entries(yearlyEntries).flatMap(([year, entries]) =>
+        entries.map(entry => `${year},${entry.date},${entry.book},${entry.price}`)
+    ).join('\n');
 
-    for (let year in yearlyEntries) {
-        yearlyEntries[year].forEach(entry => {
-            csvContent += `${year},${entry.date},${entry.book},${entry.price}\n`;
-        });
-    }
+    const blob = new Blob([`Year,Date,Book,Price\n${csvContent}`], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
 
-    // Create a Blob with the CSV content
-    let blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = Object.assign(document.createElement('a'), {
+        href: url,
+        download: 'entries.csv',
+        style: { visibility: 'hidden' },
+    });
 
-    // Create a link element
-    let link = document.createElement("a");
-
-    if (link.download !== undefined) { // feature detection
-        // Browsers that support HTML5 download attribute
-        let url = URL.createObjectURL(blob);
-        link.setAttribute("href", url);
-        link.setAttribute("download", "entries.csv");
-        link.style.visibility = 'hidden';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    }
-}  
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+});
