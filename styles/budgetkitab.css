@@ -10,7 +10,7 @@ body {
 }
 
 #lang {
-    font-family: 'Noto Color Emoji';
+    font-family: 'Noto Color Emoji', sans-serif;
 }
 
 main {
