@@ -13,7 +13,7 @@ function applyTranslation(lang) {
                 document.body.style.fontFamily = "'Almarai', sans-serif";
             } else {
                 document.body.setAttribute('dir', 'ltr');
-                document.body.style.fontFamily = "";  // Reset to default font for other languages
+                document.body.style.fontFamily = "Product Sans";  // Reset to default font for other languages
             }
         });
 }
