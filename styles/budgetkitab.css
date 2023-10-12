@@ -124,6 +124,9 @@ th {
 }
 
 button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-family: inherit;
     font-size: 1em;
     border: none;
@@ -144,10 +147,15 @@ button {
 }
 
 #downloadButton {
-    background-color: rgb(77, 77, 77);
-    display: flex;
+    background-color: #2a464d;
     flex-direction: row;
     align-items: center;
+    font-size: 0.8em;
+    height: auto;
+}
+
+#downloadButton span {
+    margin-right: 0.3em;
 }
 
 #entries td:last-child {
