@@ -77,27 +77,18 @@ const updateBudgetColor = () => {
     const maxBudget = 850;
     const halfBudget = 425;
 
-    let color;
-    if (budget >= halfBudget) {
-        const green = [0, 128, 0];
-        const orange = [255, 165, 0];
-        const ratio = (budget - halfBudget) / (maxBudget - halfBudget);
-        color = interpolateColor(orange, green, ratio);
-    } else {
-        const red = [255, 0, 0];
-        const orange = [255, 165, 0];
-        const ratio = budget / halfBudget;
-        color = interpolateColor(red, orange, ratio);
-    }
+    const colors = {
+        green: [0, 128, 0],
+        orange: [255, 165, 0],
+        red: [255, 0, 0]
+    };
 
-    budgetElement.style.color = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
+    const [color1, color2] = budget >= halfBudget ? [colors.orange, colors.green] : [colors.red, colors.orange];
+    const ratio = budget >= halfBudget ? (budget - halfBudget) / (maxBudget - halfBudget) : budget / halfBudget;
+
+    budgetElement.style.color = `rgb(${interpolateColor(color1, color2, ratio).join(', ')})`;
 };
 
-const interpolateColor = (color1, color2, ratio) => {
-    return [
-        Math.round(color1[0] + ratio * (color2[0] - color1[0])),
-        Math.round(color1[1] + ratio * (color2[1] - color1[1])),
-        Math.round(color1[2] + ratio * (color2[2] - color1[2]))
-    ];
-};
+const interpolateColor = (color1, color2, ratio) => color1.map((start, i) => Math.round(start + ratio * (color2[i] - start)));
+
 
