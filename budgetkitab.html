@@ -14,16 +14,23 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="styles/budgetkitab.css">
 </head>
 
 <body>
     <main>
-        <select id="lang" onchange="applyTranslation(this.value)">
-            <option value="en">🇬🇧 English</option>
-            <option value="id">🇮🇩 Indonesian</option>
-            <option value="ar">🇸🇦 Arabic</option>
-        </select>
+        <div class="form-group">
+            <span class="material-symbols-outlined">
+                language
+            </span>
+            <select id="lang" onchange="applyTranslation(this.value)">
+                <option value="en">🇬🇧 English</option>
+                <option value="id">🇮🇩 Indonesian</option>
+                <option value="ar">🇸🇦 Arabic</option>
+            </select>
+        </div>
         <h2 data-i18n="Badal Kutub Tracker">Badal Kutub Tracker</h2>
         <div class="form-group">
             <label for="year" data-i18n="Year:">Year:</label>
