@@ -23,14 +23,16 @@ const displayEntries = () => {
     updateBudgetColor();
 };
 
-
-const deleteEntry = index => {
-    budget += Math.round(Number(entries[index].price));
-    entries.splice(index, 1);
-    yearlyEntries[currentYear] = entries;
-    yearlyBudgets[currentYear] = budget;
-    updateLocalStorage();
-    displayEntries();
+const deleteEntry = id => {
+    const index = entries.findIndex(entry => entry.id === id);
+    if (index !== -1) {
+        budget += Math.round(Number(entries[index].price));
+        entries.splice(index, 1);
+        yearlyEntries[currentYear] = entries;
+        yearlyBudgets[currentYear] = budget;
+        updateLocalStorage();
+        displayEntries();
+    }
 };
 
 yearSelect.addEventListener('change', () => {
