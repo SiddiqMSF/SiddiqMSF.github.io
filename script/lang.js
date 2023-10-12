@@ -3,7 +3,8 @@ function applyTranslation(lang) {
         .then(response => response.json())
         .then(data => {
             document.querySelectorAll('[data-i18n]').forEach(elem => {
-                elem.textContent = data[elem.textContent.trim()] || elem.textContent;
+                let key = elem.getAttribute('data-i18n');
+                elem.textContent = data[key] || elem.textContent;
             });
         });
 }
