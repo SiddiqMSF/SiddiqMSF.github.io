@@ -1,5 +1,5 @@
 {
-    "Badal Kutub Tracker": "Pelacak Badal Kutub",
+    "Badal Kutub Tracker": "Badal Kutub Tracker",
     "Year:": "Tahun:",
     "Date:": "Tanggal:",
     "Book Name:": "Nama Buku:",
@@ -10,6 +10,6 @@
     "Book Name": "Nama Buku",
     "Price": "Harga",
     "Delete": "Hapus",
-    "Budget:": "Anggaran: ",
-    "Reset": "Atur Ulang"
+    "Budget:": "Budget: ",
+    "Reset": "Reset"
 }

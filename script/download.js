@@ -3,7 +3,6 @@ document.getElementById('downloadButton').addEventListener('click', () => {
         entries.map(entry => `${year},${entry.date},${entry.book},${entry.price}`) 
     ).join('\n'); 
 
-    // Add UTF-8 BOM at the start of the string
     const BOM = "\uFEFF";
     const csvWithBOM = BOM + `Year,Date,Book,Price\n${csvContent}`;
 
