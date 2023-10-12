@@ -8,5 +8,6 @@ function applyTranslation(lang) {
                     elem.childNodes[0].textContent = data[key] || elem.childNodes[0].textContent;
                 }
             });
+            document.body.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
         });
 }
