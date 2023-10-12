@@ -20,37 +20,36 @@
         <select id="lang" onchange="applyTranslation(this.value)">
             <option value="en">English</option>
             <option value="id">Indonesian</option>
-        </select>        
-        <h2 data-i18n>Badal Kutub Tracker</h2>
+        </select>
+        <h2 data-i18n="Badal Kutub Tracker">Badal Kutub Tracker</h2>
         <div class="form-group">
-            <label for="year" data-i18n>Year:</label>
+            <label for="year" data-i18n="Year:">Year:</label>
             <select id="year" name="year" required></select>
         </div>
 
         <form id="entryForm">
             <div class="form-group">
-                <label for="date" data-i18n>Date:</label>
+                <label for="date" data-i18n="Date:">Date:</label>
                 <input type="date" id="date" name="date">
             </div>
             <div class="form-group">
-                <label for="book" data-i18n>Book Name:</label>
+                <label for="book" data-i18n="Book Name:">Book Name:</label>
                 <input type="text" id="book" name="book" required>
             </div>
             <div class="form-group">
-                <label for="price" data-i18n>Price:</label>
+                <label for="price" data-i18n="Price:">Price:</label>
                 <input type="number" id="price" name="price" required>
             </div>
-            <button type="submit" data-i18n>Add</button>
+            <button type="submit" data-i18n="Add">Add</button>
         </form>
 
-
-        <h3 data-i18n>Details:</h3>
+        <h3 data-i18n="Details:">Details:</h3>
         <table id="entries">
             <tr>
-                <th data-i18n>Date</th>
-                <th data-i18n>Book Name</th>
-                <th data-i18n>Price</th>
-                <th data-i18n>Delete</th>
+                <th data-i18n="Date">Date</th>
+                <th data-i18n="Book Name">Book Name</th>
+                <th data-i18n="Price">Price</th>
+                <th data-i18n="Delete">Delete</th>
             </tr>
         </table>
 
@@ -58,10 +57,10 @@
             <h3 data-i18n="Budget:" id="floating-budget">Budget: <span id="budget">850</span></h3>
         </div>
 
-        <button id="deleteAllButton" data-i18n>Reset</button>
+        <button id="deleteAllButton" data-i18n="Reset">Reset</button>
     </main>
     <script src="script\budgetkitab.js"></script>
-<script src="script/lang.js"></script>
+    <script src="script/lang.js"></script>
     </main>
 </body>
 
