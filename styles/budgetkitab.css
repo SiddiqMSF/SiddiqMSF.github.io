@@ -145,6 +145,9 @@ button {
 
 #downloadButton {
     background-color: rgb(77, 77, 77);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 #entries td:last-child {
