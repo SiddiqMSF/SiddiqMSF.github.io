@@ -73,18 +73,31 @@ window.onload = displayEntries;
 
 const updateBudgetColor = () => {
     const budgetElement = document.getElementById('budget');
-    let budget = calculateBudget();
-    const colors = { green: [0, 128, 0], orange: [255, 165, 0], red: [255, 0, 0] };
+    const budget = Number(budgetElement.textContent);
+    const maxBudget = 850;
+    const halfBudget = 425;
+
     let color;
+    if (budget >= halfBudget) {
+        const green = [0, 255, 0];
+        const orange = [255, 165, 0];
+        const ratio = (budget - halfBudget) / (maxBudget - halfBudget);
+        color = interpolateColor(orange, green, ratio);
+    } else {
+        const red = [255, 0, 0];
+        const orange = [255, 165, 0];
+        const ratio = budget / halfBudget;
+        color = interpolateColor(red, orange, ratio);
+    }
 
-    budget = Math.max(0, Math.min(budget, 850));
-
-    color = budget >= 850 ? 'green' : budget <= 0 ? 'red' : (() => {
-        const percentGreen = budget / 850;
-        const [startColor, endColor] = percentGreen <= 0.5 ? ['red', 'orange'] : ['orange', 'green'];
-        const mixedRGB = colors[startColor].map((val, i) => Math.round(val * (1 - percentGreen * 2) + colors[endColor][i] * percentGreen * 2));
-        return `rgb(${mixedRGB.join(',')})`;
-    })();
-
-    budgetElement.style.color = color;
+    budgetElement.style.color = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
 };
+
+const interpolateColor = (color1, color2, ratio) => {
+    return [
+        Math.round(color1[0] + ratio * (color2[0] - color1[0])),
+        Math.round(color1[1] + ratio * (color2[1] - color1[1])),
+        Math.round(color1[2] + ratio * (color2[2] - color1[2]))
+    ];
+};
+
