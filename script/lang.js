@@ -8,6 +8,12 @@ function applyTranslation(lang) {
                     elem.childNodes[0].textContent = data[key] || elem.childNodes[0].textContent;
                 }
             });
-            document.body.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+            if (lang === 'ar') {
+                document.body.setAttribute('dir', 'rtl');
+                document.body.style.fontFamily = "'Almarai', sans-serif";
+            } else {
+                document.body.setAttribute('dir', 'ltr');
+                document.body.style.fontFamily = "";  // Reset to default font for other languages
+            }
         });
 }
