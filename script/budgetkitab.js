@@ -79,7 +79,7 @@ const updateBudgetColor = () => {
 
     const colors = {
         green: [0, 128, 0],
-        orange: [255, 165, 0],
+        orange: [154, 205, 50],
         red: [255, 0, 0]
     };
 
@@ -90,5 +90,4 @@ const updateBudgetColor = () => {
 };
 
 const interpolateColor = (color1, color2, ratio) => color1.map((start, i) => Math.round(start + ratio * (color2[i] - start)));
-
 
