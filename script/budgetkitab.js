@@ -47,13 +47,14 @@ entryForm.addEventListener('submit', e => {
     let { date, book, price } = entryForm;
     price = Math.round(parseFloat(price.value));
     if (!date.value) date.value = new Date().toISOString().split('T')[0];
-    if (calculateBudget() - price >= 0) {
-        entries.push({ date: date.value, book: book.value, price });
-        yearlyEntries[currentYear] = entries;
-        updateLocalStorage();
-        displayEntries();
-        entryForm.reset();
-    } else alert('Invalid entry or insufficient budget');
+    entries.push({ date: date.value, book: book.value, price });
+    yearlyEntries[currentYear] = entries;
+    updateLocalStorage();
+    displayEntries();
+    entryForm.reset();
+    if (calculateBudget() - price < 0) {
+        alert('Warning: Your budget is now negative');
+    }
 });
 
 deleteAllButton.addEventListener('click', () => {
@@ -75,7 +76,6 @@ const updateBudgetColor = () => {
     const colors = { green: [0, 128, 0], orange: [255, 165, 0], red: [255, 0, 0] };
     let color;
 
-    // Ensure budget is within the range of 0 to 850
     budget = Math.max(0, Math.min(budget, 850));
 
     color = budget >= 850 ? 'green' : budget <= 0 ? 'red' : (() => {
