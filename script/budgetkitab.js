@@ -82,7 +82,7 @@ const updateBudgetColor = () => {
     color = budget >= 850 ? 'green' : budget <= 0 ? 'red' : (() => {
         const percentGreen = budget <= 425 ? (budget / 425) * 0.5 : ((budget - 425) / (850 - 425)) * 0.5 + 0.5;
         const [startColor, endColor] = percentGreen <= 0.5 ? ['red', 'orange'] : ['orange', 'green'];
-        const mixedRGB = colors[startColor].map((val, i) => Math.round(val * (1 - percentGreen) + colors[endColor][i] * percentGreen));
+        const mixedRGB = colors[startColor].map((val, i) => Math.round(val * (1 - (percentGreen - Math.floor(percentGreen))) + colors[endColor][i] * (percentGreen - Math.floor(percentGreen))));
         return `rgb(${mixedRGB.join(',')})`;
     })();
 
