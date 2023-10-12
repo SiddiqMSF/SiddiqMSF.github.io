@@ -1,15 +1,17 @@
 const [entryForm, deleteAllButton, yearSelect] = ['entryForm', 'deleteAllButton', 'year'].map(id => document.getElementById(id));
 let currentYear = new Date().getFullYear();
-let yearlyBudgets = JSON.parse(localStorage.getItem('yearlyBudgets')) || {};
 let yearlyEntries = JSON.parse(localStorage.getItem('yearlyEntries')) || {};
-yearlyBudgets[currentYear] = yearlyBudgets[currentYear] || 850;
 yearlyEntries[currentYear] = yearlyEntries[currentYear] || [];
-let [budget, entries] = [yearlyBudgets[currentYear], yearlyEntries[currentYear]];
+let entries = yearlyEntries[currentYear];
 yearSelect.value = currentYear;
 
 const updateLocalStorage = () => {
     localStorage.setItem('yearlyEntries', JSON.stringify(yearlyEntries));
-    localStorage.setItem('yearlyBudgets', JSON.stringify(yearlyBudgets));
+};
+
+const calculateBudget = () => {
+    const totalSpent = entries.reduce((total, entry) => total + entry.price, 0);
+    return 850 - totalSpent;
 };
 
 const displayEntries = () => {
@@ -23,22 +25,19 @@ const displayEntries = () => {
         deleteButton.addEventListener('click', () => deleteEntry(index));
         row.insertCell(3).appendChild(deleteButton);
     });
-    document.getElementById('budget').textContent = budget;
+    document.getElementById('budget').textContent = calculateBudget();
     updateBudgetColor();
 };
 
 const deleteEntry = index => {
-    budget += Math.round(Number(entries[index].price));
     entries.splice(index, 1);
     yearlyEntries[currentYear] = entries;
-    yearlyBudgets[currentYear] = budget;
     updateLocalStorage();
     displayEntries();
 };
 
 yearSelect.addEventListener('change', () => {
     currentYear = yearSelect.value;
-    budget = yearlyBudgets[currentYear] || 850;
     entries = yearlyEntries[currentYear] || [];
     displayEntries();
 });
@@ -48,11 +47,9 @@ entryForm.addEventListener('submit', e => {
     let { date, book, price } = entryForm;
     price = Math.round(parseFloat(price.value));
     if (!date.value) date.value = new Date().toISOString().split('T')[0];
-    if (budget - price >= 0) {
+    if (calculateBudget() - price >= 0) {
         entries.push({ date: date.value, book: book.value, price });
         yearlyEntries[currentYear] = entries;
-        budget -= price;
-        yearlyBudgets[currentYear] = budget;
         updateLocalStorage();
         displayEntries();
         entryForm.reset();
@@ -61,8 +58,6 @@ entryForm.addEventListener('submit', e => {
 
 deleteAllButton.addEventListener('click', () => {
     entries.length = 0;
-    budget = 850;
-    yearlyBudgets[currentYear] = budget;
     yearlyEntries[currentYear] = entries;
     updateLocalStorage();
     displayEntries();
