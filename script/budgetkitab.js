@@ -61,7 +61,8 @@ entryForm.addEventListener('submit', e => {
 });
 
 deleteAllButton.addEventListener('click', () => {
-    entries.length = budget = yearlyBudgets[currentYear] = 850;
+    entries = [];
+    budget = yearlyBudgets[currentYear] = 850;
     yearlyEntries[currentYear] = entries;
     updateLocalStorage();
     displayEntries();
