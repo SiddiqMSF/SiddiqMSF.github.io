@@ -14,25 +14,20 @@ const calculateBudget = () => {
     return 850 - totalSpent;
 };
 
-entryForm.addEventListener('submit', e => {
-    e.preventDefault();
-    let { date, book, price } = entryForm;
-    price = Math.round(parseFloat(price.value));
-    if (!date.value) date.value = new Date().toISOString().split('T')[0];
-    
-    // Calculate new budget before adding entry
-    const newBudget = calculateBudget() - price;
-    
-    if (newBudget < 0) {
-        alert('Warning: Your budget is now negative');
-    }
-    
-    entries.push({ date: date.value, book: book.value, price });
-    yearlyEntries[currentYear] = entries;
-    updateLocalStorage();
-    displayEntries();
-    entryForm.reset();
-});
+const displayEntries = () => {
+    const entriesTable = document.getElementById('entries');
+    while (entriesTable.rows.length > 1) entriesTable.deleteRow(1);
+    entries.forEach((entry, index) => {
+        let row = entriesTable.insertRow(-1);
+        ['date', 'book', 'price'].forEach((key, i) => row.insertCell(i).textContent = entry[key]);
+        let deleteButton = document.createElement('button');
+        deleteButton.innerHTML = '<span class="material-symbols-rounded">delete_forever</span>';
+        deleteButton.addEventListener('click', () => deleteEntry(index));
+        row.insertCell(3).appendChild(deleteButton);
+    });
+    document.getElementById('budget').textContent = calculateBudget();
+    updateBudgetColor();
+};
 
 const deleteEntry = index => {
     entries.splice(index, 1);
@@ -57,7 +52,8 @@ entryForm.addEventListener('submit', e => {
     updateLocalStorage();
     displayEntries();
     entryForm.reset();
-    if (calculateBudget() - price < 0) {
+    let budget = calculateBudget();
+    if (budget - price < 0) {
         alert('Warning: Your budget is now negative');
     }
 });
