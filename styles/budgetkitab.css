@@ -9,9 +9,10 @@ body {
     background-attachment: fixed;
 }
 
-#lang option {
-    font-family: arial;
+.lang option {
+    font-family: 'Noto Color Emoji';
 }
+
 
 main {
     display: inherit;
