@@ -1,26 +1,15 @@
-import XLSX from 'xlsx';
-import { saveAs } from 'file-saver';
-
 document.getElementById('downloadButton').addEventListener('click', () => {
-    const wb = XLSX.utils.book_new();
-
-    const data = Object.entries(yearlyEntries).flatMap(([year, entries]) =>
-        entries.map(entry => [year, entry.date, entry.book, entry.price])
+    const entries = Object.entries(yearlyEntries).flatMap(([year, entries]) =>
+        entries.map(entry => ({Year: year, Date: entry.date, Book: entry.book, Price: entry.price}))
     );
 
-    data.unshift(['Year', 'Date', 'Book', 'Price']);
+    /* create a new blank workbook and worksheet */
+    const wb = XLSX.utils.book_new();
+    const ws = XLSX.utils.json_to_sheet(entries);
 
-    const ws = XLSX.utils.aoa_to_sheet(data);
-    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+    /* add the worksheet to the workbook */
+    XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
 
-    const wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
-
-    function s2ab(s) {
-        var buf = new ArrayBuffer(s.length);
-        var view = new Uint8Array(buf);
-        for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
-        return buf;
-    }
-
-    saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), 'entries.xlsx');
+    /* write the workbook and force a download */
+    XLSX.writeFile(wb, 'entries.xlsx');
 });
