@@ -18,7 +18,17 @@
 
 <body>
     <header>
-        <h1>BadalTracker</h1><h3 data-i18n="Budget:">Budget: <span id="budget">850</span></h3>
+        <h1>BadalTracker</h1>
+        <div id="lang-selector" class="form-group">
+            <span class="material-symbols-rounded">
+                language
+            </span>
+            <select id="lang" onchange="applyTranslation(this.value)">
+                <option value="en">English</option>
+                <option value="id">Indonesian</option>
+                <option value="ar">العربية</option>
+            </select>
+        </div>
     </header>
     <main>
         <div id="lang-selector" class="form-group">
@@ -31,7 +41,6 @@
                 <option value="ar">العربية</option>
             </select>
         </div>
-        <h2 data-i18n="Badal Kutub Tracker">Badal Kutub Tracker</h2>
         <div class="form-group">
             <label for="year" data-i18n="Year:">Year:</label>
             <select id="year" name="year" required></select>
