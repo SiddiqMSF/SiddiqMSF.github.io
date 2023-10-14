@@ -33,7 +33,7 @@
             <label for="year" data-i18n="Year:">Year:</label>
             <select id="year" name="year" required></select>
         </div>
-        <form id="entryForm">
+        <form id="entryForm" class="entryForm">
             <div class="form-group">
                 <label for="date" data-i18n="Date:">Date:</label>
                 <input type="date" id="date" name="date">
@@ -48,27 +48,27 @@
             </div>
             <button type="submit" data-i18n="Add">Add</button>
         </form>
+        <div class="entryForm">
+            <h3 data-i18n="Details:">Details:</h3>
+            <table id="entries">
+                <tr>
+                    <th data-i18n="Date">Date</th>
+                    <th data-i18n="Book Name">Book Name</th>
+                    <th data-i18n="Price">Price</th>
+                    <th data-i18n="Delete">Delete</th>
+                </tr>
+            </table>
 
-        <h3 data-i18n="Details:">Details:</h3>
-        <table id="entries">
-            <tr>
-                <th data-i18n="Date">Date</th>
-                <th data-i18n="Book Name">Book Name</th>
-                <th data-i18n="Price">Price</th>
-                <th data-i18n="Delete">Delete</th>
-            </tr>
-        </table>
+            <div id="floating-budget">
+                <h3 data-i18n="Budget:">Budget: <span id="budget">850</span></h3>
+            </div>
 
-        <div id="floating-budget">
-            <h3 data-i18n="Budget:">Budget: <span id="budget">850</span></h3>
+            <button id="downloadButton" title="Download data budget kitab dalam bentuk excel/sheet"> <span
+                    class="material-symbols-rounded">
+                    download
+                </span>Download Data</button>
+            <button id="deleteAllButton" title="Hapus semua data" data-i18n="Reset">Reset</button>
         </div>
-        
-        <button id="downloadButton" title="Download data budget kitab dalam bentuk excel/sheet"> <span
-                class="material-symbols-rounded">
-                download
-            </span>Download Data</button>
-        <button id="deleteAllButton" title="Hapus semua data" data-i18n="Reset">Reset</button>
-
         <script src="script\budgetkitab.js"></script>
         <script src="script/lang.js"></script>
         <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
