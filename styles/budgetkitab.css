@@ -28,6 +28,8 @@ footer {
     align-items: center;
     height: 8vh;
     justify-content: center;
+    position: fixed;
+    bottom: 0;
 }
 
 
