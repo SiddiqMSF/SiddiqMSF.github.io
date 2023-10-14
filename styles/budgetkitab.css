@@ -23,23 +23,13 @@ main {
     left: 1em;
 }
 
-#entryForm {
+.entryForm {
     display: flex;
     flex-direction: column;
     background-color: #ffffff9e;
     border-radius: 10px;
     padding: 1.2em 1.1em;
     width: 80%;
-}
-
-.details {
-    display: flex;
-    flex-direction: column;
-    background-color: #ffffff9e;
-    border-radius: 10px;
-    padding: 1.2em 1.1em;
-    width: 80%;
-
 }
 
 .form-group {
