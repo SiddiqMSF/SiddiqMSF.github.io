@@ -53,7 +53,7 @@ entryForm.addEventListener('submit', e => {
     displayEntries();
     entryForm.reset();
     let budget = calculateBudget();
-    if (budget - price < 0) {
+    if (budget < 0) {
         alert('Warning: Your budget is now negative');
     }
 });
