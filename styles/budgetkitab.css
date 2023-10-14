@@ -33,8 +33,6 @@ main {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
-    background-color: white;
-    border-radius: 10px;
 }
 
 .form-group label {
