@@ -29,8 +29,8 @@ const displayEntries = () => {
     updateBudgetColor();
     let budget = calculateBudget();
     let progressBar = document.getElementById('progressBar');
-    let percentage = budget / 850 * 100;
-    progressBar.style.width = percentage + '%';
+    let percentage = Math.max(budget / 850 * 100, 20);
+    progressBar.style.width = percentage + '%';    
 };
 
 const deleteEntry = index => {
