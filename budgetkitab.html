@@ -31,6 +31,9 @@
         </div>
     </header>
     <main>
+        <div id="BudgetBox">
+            <h3 data-i18n="Budget:">Budget: <span id="budget">850</span></h3>
+        </div>
         <div class="form-group">
             <label for="year" data-i18n="Year:">Year:</label>
             <select id="year" name="year" required></select>
@@ -60,21 +63,18 @@
             </tr>
         </table>
 
-        <button id="downloadButton" data-i18n="DownloadData" title="Download data budget kitab dalam bentuk excel/sheet"> <span
-                class="material-symbols-rounded">
+        <button id="downloadButton" data-i18n="DownloadData"
+            title="Download data budget kitab dalam bentuk excel/sheet"> <span class="material-symbols-rounded">
                 download
             </span>Download Data</button>
         <button id="deleteAllButton" title="Hapus semua data" data-i18n="Reset">Reset</button>
-      
+
 
         <script src="script\budgetkitab.js"></script>
         <script src="script/lang.js"></script>
         <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
         <script src="script\download.js"></script>
     </main>
-    <footer>
-        <h3 data-i18n="Budget:">Budget: <span id="budget">850</span></h3>
-    </footer>
 </body>
 
 </html>
