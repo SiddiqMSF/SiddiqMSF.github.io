@@ -79,8 +79,8 @@ const updateBudgetColor = () => {
     const halfBudget = 425;
 
     const colors = {
-        green: [5, 81, 89],
-        orange: [159, 113, 28],
+        green: [0, 83, 102],
+        orange: [230, 150, 1],
         red: [114, 13, 13]
     };
 
