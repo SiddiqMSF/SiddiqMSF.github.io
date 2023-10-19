@@ -79,16 +79,16 @@ const updateBudgetColor = () => {
     const halfBudget = 425;
 
     const colors = {
-        green: [0, 128, 0],
-        orange: [154, 205, 50],
-        red: [255, 0, 0]
+        green: [5, 81, 89],
+        orange: [159, 113, 28],
+        red: [114, 13, 13]
     };
 
     const [color1, color2] = budget >= halfBudget ? [colors.orange, colors.green] : [colors.red, colors.orange];
     const ratio = budget >= halfBudget ? (budget - halfBudget) / (maxBudget - halfBudget) : budget / halfBudget;
 
     const interpolatedColor = interpolateColor(color1, color2, ratio).join(', ');
-    
+
     budgetBoxElement.style.background = `rgb(${interpolatedColor})`;
 };
 
