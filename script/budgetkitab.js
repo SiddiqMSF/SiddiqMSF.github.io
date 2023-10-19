@@ -20,7 +20,7 @@ const checkEntriesAndDisplayWrapper = () => {
     const hasEntries = Object.values(yearlyEntries).some(yearEntries => yearEntries.length > 0);
 
     if (hasEntries) {
-        entriesWrapper.style.display = 'block';
+        entriesWrapper.style.display = 'flex';
     } else {
         entriesWrapper.style.display = 'none';
     }

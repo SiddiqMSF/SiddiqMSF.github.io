@@ -118,6 +118,11 @@ input {
     font-size: large;
 }
 
+#entrieswrapper {
+    flex-direction: inherit;
+    width: 85vw;
+}
+
 #entries thead {
     background: linear-gradient(90deg, #006880 10.79%, #005366 87.08%);
 }
