@@ -41,7 +41,23 @@ h2 span {
 
 #BudgetBox {
     display: flex;
-    background-color: linear-gradient(90deg, #006880 10.79%, #005366 87.08%);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(90deg, #006880 10.79%, #005366 87.08%);
+    border-radius: 10px;
+    box-sizing: border-box;
+    padding: 8px 10px;
+    width: 85vw;
+    margin: 0px 0px 10px;
+}
+
+#BudgetBox h3 {
+    font-size: small;
+}
+
+#budget {
+    font-size: large;
 }
 
 main {
