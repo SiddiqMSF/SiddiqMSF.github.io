@@ -27,11 +27,11 @@ header {
 }
 
 h2 span {
-    color:#005366;
+    color: #005366;
     font-weight: 100;
 }
 
-#lang-selector{
+#lang-selector {
     display: inherit;
 }
 
@@ -39,7 +39,7 @@ h2 span {
     width: 90px;
 }
 
-#budgetbox{
+#BudgetBox {
     display: flex;
     background-color: linear-gradient(90deg, #006880 10.79%, #005366 87.08%);
 }
