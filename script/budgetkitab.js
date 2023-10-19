@@ -89,7 +89,6 @@ const updateBudgetColor = () => {
 
     const interpolatedColor = interpolateColor(color1, color2, ratio).join(', ');
     
-    budgetElement.style.color = `rgb(${interpolatedColor})`;
     budgetBoxElement.style.background = `rgb(${interpolatedColor})`;
 };
 
