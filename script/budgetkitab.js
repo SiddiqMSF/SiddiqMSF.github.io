@@ -27,6 +27,10 @@ const displayEntries = () => {
     });
     document.getElementById('budget').textContent = calculateBudget();
     updateBudgetColor();
+    let budget = calculateBudget();
+    let progressBar = document.getElementById('progressBar');
+    let percentage = budget / 850 * 100;
+    progressBar.style.width = percentage + '%';
 };
 
 const deleteEntry = index => {
