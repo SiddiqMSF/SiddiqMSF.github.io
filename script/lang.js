@@ -11,9 +11,13 @@ function applyTranslation(lang) {
             if (lang === 'ar') {
                 document.body.setAttribute('dir', 'rtl');
                 document.body.style.fontFamily = "'Almarai', sans-serif";
+                document.querySelector('#progressBar').style.right = '0';
+                document.querySelector('#progressBar').style.left = '';
             } else {
                 document.body.setAttribute('dir', 'ltr');
                 document.body.style.fontFamily = "Product Sans";
+                document.querySelector('#progressBar').style.left = '0';
+                document.querySelector('#progressBar').style.right = '';
             }
         });
 }

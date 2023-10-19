@@ -58,7 +58,6 @@ h2 span {
     position: absolute;
     width: 100%;
     left: 0;
-
 }
 
 #textContainer {
@@ -100,6 +99,10 @@ main {
 
 .form-group input {
     width: 55%;
+}
+
+#yearlabel {
+    width: auto;
 }
 
 select {
