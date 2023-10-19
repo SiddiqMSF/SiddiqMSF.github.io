@@ -73,6 +73,7 @@ window.onload = displayEntries;
 
 const updateBudgetColor = () => {
     const budgetElement = document.getElementById('budget');
+    const budgetBoxElement = document.getElementById('BudgetBox');
     const budget = Number(budgetElement.textContent);
     const maxBudget = 850;
     const halfBudget = 425;
@@ -86,8 +87,12 @@ const updateBudgetColor = () => {
     const [color1, color2] = budget >= halfBudget ? [colors.orange, colors.green] : [colors.red, colors.orange];
     const ratio = budget >= halfBudget ? (budget - halfBudget) / (maxBudget - halfBudget) : budget / halfBudget;
 
-    budgetElement.style.color = `rgb(${interpolateColor(color1, color2, ratio).join(', ')})`;
+    const interpolatedColor = interpolateColor(color1, color2, ratio).join(', ');
+    
+    budgetElement.style.color = `rgb(${interpolatedColor})`;
+    budgetBoxElement.style.background = `rgb(${interpolatedColor})`;
 };
 
 const interpolateColor = (color1, color2, ratio) => color1.map((start, i) => Math.round(start + ratio * (color2[i] - start)));
+
 
