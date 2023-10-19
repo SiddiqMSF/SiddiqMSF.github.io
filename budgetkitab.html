@@ -15,6 +15,230 @@
     <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/budgetkitab.css">
 </head>
+<style>
+    body {
+        font-family: 'Product Sans', sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        overflow-y: auto;
+        background: linear-gradient(90deg, rgb(236, 242, 245) 0%, 1.3089%, rgb(234, 243, 245) 2.6178%, 17.4084%, rgb(232, 241, 242) 32.199%, 36.2565%, rgb(229, 241, 242) 40.3141%, 45.0262%, rgb(227, 240, 242) 49.7382%, 51.8325%, rgb(226, 239, 245) 53.9267%, 57.199%, rgb(224, 239, 245) 60.4712%, 62.9581%, rgb(220, 237, 245) 65.445%, 66.2304%, rgb(220, 237, 245) 67.0157%, 68.0628%, rgb(218, 236, 244) 69.1099%, 75.1309%, rgb(214, 233, 240) 81.1518%, 82.5916%, rgb(211, 231, 240) 84.0314%, 84.4241%, rgb(212, 231, 239) 84.8168%, 86.911%, rgb(210, 230, 239) 89.0052%, 94.5026%, rgb(207, 227, 236) 100%);
+        background-attachment: fixed;
+        margin: 0;
+        font-size: 1rem;
+    }
+
+    header {
+        font-family: 'Product Sans', sans-serif;
+        background-color: rgba(255, 255, 255, 0.832);
+        width: 100vw;
+        display: flex;
+        align-items: center;
+        height: 8vh;
+        justify-content: space-between;
+        padding: 0px 4px 0px 10px;
+        box-sizing: border-box;
+        box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.12), 0px 1.6px 3.6px rgba(0, 0, 0, 0.16);
+        direction: ltr;
+        z-index: 9;
+    }
+
+    h2 span {
+        color: #005366;
+        font-weight: 100;
+    }
+
+    #lang-selector {
+        display: inherit;
+    }
+
+    #lang-selector select {
+        width: 90px;
+    }
+
+    #BudgetBox {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        box-sizing: border-box;
+        padding: 8px 10px;
+        width: 85vw;
+        margin: 0px 0px 10px;
+    }
+
+    main {
+        display: inherit;
+        flex-direction: inherit;
+        justify-content: inherit;
+        align-items: inherit;
+        width: 95vw;
+        margin: 9vh 0vh 18vh;
+    }
+
+    .entryForm {
+        display: flex;
+        flex-direction: column;
+        background-color: #ffffff9e;
+        border-radius: 10px;
+        width: 90%;
+        margin: 0rem 0rem 1rem;
+        padding: 1.2rem 1.1rem;
+        box-sizing: border-box;
+    }
+
+    .form-group {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+
+    .form-group label {
+        width: 30%;
+    }
+
+    .form-group input {
+        width: 55%;
+    }
+
+    select {
+        text-align: center;
+        border-radius: 6px;
+        border: 1px;
+        font-family: inherit;
+        background-color: transparent;
+    }
+
+    input {
+        margin: 0px 5px 0px 5px;
+        text-align: center;
+        border-radius: 6px;
+        box-shadow: inset 0px 2px 6px rgba(0, 0, 0, 0.1);
+        border: 1px;
+        font-family: inherit;
+        font-size: large;
+    }
+
+    #entries thead {
+        background: linear-gradient(90deg, #006880 10.79%, #005366 87.08%);
+    }
+
+    #entries {
+        border-collapse: collapse;
+        border-spacing: 0;
+        border-radius: 10px;
+        overflow: hidden;
+        width: 90%;
+        table-layout: auto;
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    th {
+        font-weight: normal;
+    }
+
+    #entries th,
+    #entries td {
+        border: 1px solid #dddddd7a;
+        padding: 8px;
+        font-size: 1em;
+    }
+
+    .material-symbols-rounded {
+        font-size: 24px;
+    }
+
+    #entries th:nth-child(4) {
+        width: auto;
+    }
+
+    #entries th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: center;
+        background: #005366;
+        color: white;
+    }
+
+    #entries button {
+        color: #c61d1d;
+        margin: 0;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+        padding: 3px 0px;
+    }
+
+    td {
+        background-color: rgba(255, 255, 255, 0.85);
+    }
+
+    button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: inherit;
+        font-size: 1em;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 10px;
+        box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.12), 0px 1.6px 3.6px rgba(0, 0, 0, 0.16);
+        margin: 1em 0em 0em;
+    }
+
+    #deleteAllButton {
+        background-color: #a11919;
+    }
+
+    #entryForm button[type="submit"] {
+        background: linear-gradient(90deg, #006880 10.79%, #005366 87.08%);
+    }
+
+    #downloadButton {
+        background-color: #2a464d;
+        flex-direction: row;
+        align-items: center;
+        font-size: 0.8em;
+        height: auto;
+    }
+
+    #downloadButton span {
+        margin-right: 0.3em;
+    }
+
+    #entries td:last-child {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #floating-budget {
+        position: fixed;
+        top: 1%;
+        right: 1%;
+        background-color: white;
+        padding: 10px;
+        z-index: 100;
+        border-radius: 10px;
+    }
+
+    h1 {
+        margin: 2px;
+        color: white;
+    }
+
+    h6 {
+        margin: 2px;
+        color: white;
+    }
+</style>
 
 <body>
     <header>
@@ -31,14 +255,15 @@
         </div>
     </header>
     <main>
-        <div id="BudgetBox">
-            <h6 data-i18n="Budget:">Budget:</h6>
-            <h1 id="budget">850</h1>
-        </div>
         <div class="form-group">
             <label for="year" data-i18n="Year:">Year:</label>
             <select id="year" name="year" required></select>
         </div>
+        <div id="BudgetBox">
+            <h6 data-i18n="Budget:">Budget:</h6>
+            <h1 id="budget">850</h1>
+        </div>
+
         <form id="entryForm" class="entryForm">
             <div class="form-group">
                 <label for="date" data-i18n="Date:">Date:</label>
