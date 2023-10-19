@@ -77,7 +77,7 @@ window.onload = displayEntries;
 
 const updateBudgetColor = () => {
     const budgetElement = document.getElementById('budget');
-    const budgetBoxElement = document.getElementById('BudgetBox');
+    const progressBarElement = document.getElementById('progressBar');
     const budget = Number(budgetElement.textContent);
     const maxBudget = 850;
     const halfBudget = 425;
@@ -93,7 +93,7 @@ const updateBudgetColor = () => {
 
     const interpolatedColor = interpolateColor(color1, color2, ratio).join(', ');
 
-    budgetBoxElement.style.background = `rgb(${interpolatedColor})`;
+    progressBarElement.style.background = `rgb(${interpolatedColor})`;
 };
 
 const interpolateColor = (color1, color2, ratio) => color1.map((start, i) => Math.round(start + ratio * (color2[i] - start)));
