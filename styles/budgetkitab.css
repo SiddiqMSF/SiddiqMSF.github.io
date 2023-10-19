@@ -88,8 +88,10 @@ main {
 
 .form-group {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     margin-bottom: 10px;
+    font-size: 0.9em;
 }
 
 .form-group label {
