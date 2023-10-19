@@ -7,11 +7,23 @@ yearSelect.value = currentYear;
 
 const updateLocalStorage = () => {
     localStorage.setItem('yearlyEntries', JSON.stringify(yearlyEntries));
+    checkEntriesAndDisplayWrapper();
 };
 
 const calculateBudget = () => {
     const totalSpent = entries.reduce((total, entry) => total + entry.price, 0);
     return 850 - totalSpent;
+};
+
+const checkEntriesAndDisplayWrapper = () => {
+    const entriesWrapper = document.getElementById('entrieswrapper');
+    const hasEntries = Object.values(yearlyEntries).some(yearEntries => yearEntries.length > 0);
+
+    if (hasEntries) {
+        entriesWrapper.style.display = 'block';
+    } else {
+        entriesWrapper.style.display = 'none';
+    }
 };
 
 const displayEntries = () => {
@@ -30,7 +42,8 @@ const displayEntries = () => {
     let budget = calculateBudget();
     let progressBar = document.getElementById('progressBar');
     let percentage = Math.max(budget / 850 * 100, 20);
-    progressBar.style.width = percentage + '%';    
+    progressBar.style.width = percentage + '%';
+    checkEntriesAndDisplayWrapper();
 };
 
 const deleteEntry = index => {
@@ -38,12 +51,14 @@ const deleteEntry = index => {
     yearlyEntries[currentYear] = entries;
     updateLocalStorage();
     displayEntries();
+    checkEntriesAndDisplayWrapper();
 };
 
 yearSelect.addEventListener('change', () => {
     currentYear = yearSelect.value;
     entries = yearlyEntries[currentYear] || [];
     displayEntries();
+    checkEntriesAndDisplayWrapper();
 });
 
 entryForm.addEventListener('submit', e => {
@@ -74,6 +89,8 @@ Array.from({ length: 6 }, (_, i) => i + 2023)
     .forEach(year => select.add(new Option(year, year)));
 
 window.onload = displayEntries;
+
+checkEntriesAndDisplayWrapper();
 
 const updateBudgetColor = () => {
     const budgetElement = document.getElementById('budget');
