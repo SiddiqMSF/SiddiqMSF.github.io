@@ -52,14 +52,6 @@ h2 span {
     margin: 0px 0px 10px;
 }
 
-#BudgetBox h3 {
-    font-size: small;
-}
-
-#budget {
-    font-size: large;
-}
-
 main {
     display: inherit;
     flex-direction: inherit;
