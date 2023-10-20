@@ -1,14 +1,25 @@
 {
-    "name": "Badal Kutub Tracker",
-    "short_name": "Badal Kutub",
-    "start_url": "/budgetkitab.html",
-    "display": "standalone",
-    "background_color": "#fff",
-    "description": "Mendata Budget Badal Kutub.",
-    "icons": [{
-      "src": "images/icon.png",
+  "name": "Badal Kutub Tracker",
+  "short_name": "BudgetKitab",
+  "description": "Mengelola Badal Kutub",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "version": "0.01",
+  "version_name": "Beta",
+  "icons": [
+    {
+      "src": "/images/icons-192.png",
+      "type": "image/png",
       "sizes": "192x192",
-      "type": "image/png"
-    }]
-  }
-  
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/icons-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ]
+}

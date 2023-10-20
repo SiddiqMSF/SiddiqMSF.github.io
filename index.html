@@ -2,65 +2,101 @@
 <html>
 
 <head>
-    <title>Mutarjim</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>BudgetKitab</title>
+    <link rel="manifest" href="/manifest.json">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/product-sans" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'product sans', sans-serif;
-            margin: 0;
-            padding: 0;
-        }
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/index.css">
+    <meta name="theme-color" content="#000000">
 
-        main {
-            display: flex;
-            flex-direction: column;
-            background-size: cover;
-            background-position: center;
-            height: 100vh;
-            justify-content: center;
-            align-items: center;
-            background-color: black;
-        }
-
-        main h1 {
-            color: white;
-            font-size: 8vh;
-            margin: 3vh 0;
-        }
-
-        .buttons {
-            display: inherit;
-            flex-wrap: wrap;
-            flex-direction: row;
-            margin: 0 10%;
-            justify-content: center;
-        }
-
-        button {
-            background: white;
-            color: black;
-            padding: 1vh 2vh;
-            border-radius: 10px;
-            font-family: inherit;
-            border: none;
-            margin: 0.4vh;
-            cursor: pointer;
-        }
-    </style>
 </head>
 
 <body>
-    <main>
-        <h1>بسم الله</h1>
-        <div class="buttons">
-            <a href="budgetkitab.html"><button>Kalkulator Badal Kutub</button></a>
+    <header>
+        <h2><span>Budget</span>Kitab</h2>
+        <div id="Nav">
+            <div id="lang-selector">
+                <span class="material-symbols-rounded">
+                    language
+                </span>
+                <select id="lang" onchange="applyTranslation(this.value)">
+                    <option value="en">English</option>
+                    <option value="id">Indonesian</option>
+                    <option value="ar">&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;</option>
+                </select>
+            </div>
         </div>
+    </header>
+    <main>
+        <div class="form-group">
+            <label id="yearlabel" for="year" data-i18n="Badal Kutub Year:">Badal Kutub </label>
+            <select id="year" name="year" required></select>
+        </div>
+        <div id="BudgetBox">
+            <div id="progressBar"></div>
+            <div id="textContainer">
+                <h6>Budget:</h6>
+                <h1 id="budget">850</h1>
+            </div>
+        </div>
+        <div id="placeholder"></div>
+
+        <form id="entryForm" class="entryForm">
+            <div class="form-group">
+                <label for="date" data-i18n="Date:">Date:</label>
+                <input type="date" id="date" name="date">
+            </div>
+            <div class="form-group">
+                <label for="book" data-i18n="Book Name:">Book Name:</label>
+                <input type="text" id="book" name="book" required>
+            </div>
+            <div class="form-group">
+                <label for="price" data-i18n="Price:">Price:</label>
+                <input type="number" id="price" name="price" required>
+            </div>
+            <button type="submit" data-i18n="Add">Add</button>
+        </form>
+        <div id="entrieswrapper">
+            <table id="entries">
+                <tr>
+                    <th data-i18n="Date">Date</th>
+                    <th data-i18n="Book Name">Book Name</th>
+                    <th data-i18n="Price">Price</th>
+                    <th data-i18n="Delete">Delete</th>
+                </tr>
+            </table>
+            <button id="downloadButton" title="Download data budget kitab dalam bentuk excel/sheet"><span
+                    class="material-symbols-rounded">
+                    download
+                </span>
+                <span data-i18n="DownloadData"> Download Data</span>
+            </button>
+            <button id="deleteAllButton" title="Hapus semua data" data-i18n="Reset">Reset</button>
+        </div>
+
     </main>
+    <footer>
+        <h7>BudgetKitab v0.01</h7>
+        <h8>&copy; 2023, Muhammad Siddiq | MIT License</h8>
+    </footer>
+    <script src="script/index.js"></script>
+    <script src="script/lang.js"></script>
+    <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+    <script src="script/download.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function () {
+                navigator.serviceWorker.register('service-worker.js');
+            });
+        }
+    </script>
 </body>
 
 </html>

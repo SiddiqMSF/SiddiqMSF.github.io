@@ -78,10 +78,13 @@ entryForm.addEventListener('submit', e => {
 });
 
 deleteAllButton.addEventListener('click', () => {
-    entries.length = 0;
-    yearlyEntries[currentYear] = entries;
-    updateLocalStorage();
-    displayEntries();
+    let confirmation = confirm("Are you sure?");
+    if (confirmation) {
+        entries.length = 0;
+        yearlyEntries[currentYear] = entries;
+        updateLocalStorage();
+        displayEntries();
+    }
 });
 
 const select = document.getElementById("year");
@@ -115,4 +118,17 @@ const updateBudgetColor = () => {
 
 const interpolateColor = (color1, color2, ratio) => color1.map((start, i) => Math.round(start + ratio * (color2[i] - start)));
 
+const budgetBox = document.querySelector("#BudgetBox");
+const placeholder = document.querySelector("#placeholder");
+const sticky = budgetBox.offsetTop;
 
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset >= sticky) {
+        placeholder.style.height = `${budgetBox.offsetHeight}px`;
+        placeholder.style.display = "flex";
+        budgetBox.classList.add("sticky");
+    } else {
+        placeholder.style.display = "none";
+        budgetBox.classList.remove("sticky");
+    }
+});
