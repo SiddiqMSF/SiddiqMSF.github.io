@@ -1,0 +1,23 @@
+p,
+ol,
+ul,
+table {
+    margin: 0 0 1em;
+    line-height: 1.5em;
+}
+
+li {
+    margin: 0 0 0.5em;
+}
+
+table,
+th,
+td {
+    border: 1px solid;
+    border-collapse: collapse;
+    padding: 8px 16px;
+}
+
+table {
+    border-radius: 10px;
+}

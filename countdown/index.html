@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.5s ease;
+            overflow: hidden;
+        }
+
+        #timer-container {
+            display: flex;
+            font-family: 'Open Sans', sans-serif;
+            text-align: center;
+            padding: 1em;
+            width: auto;
+            flex-direction: column;
+            gap: 0.5em;
+        }
+
+        #time-left {
+            font-size: 50vh;
+            font-weight: 700;
+            color: black;
+            transition: color 0.5s ease;
+        }
+
+        #buttons {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+
+        button {
+            display: flex;
+            border: none;
+            cursor: pointer;
+            background-color: transparent;
+            border-radius: 12px;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        button:disabled {
+            background-color: #cccccc;
+            cursor: default;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="timer-container">
+        <div id="time-left">05:00</div>
+        <div id="buttons">
+            <button id="start-button"><img src="play.svg"></button>
+            <button id="reset-button" disabled><img src="restart.svg"></button>
+        </div>
+    </div>
+
+    <script>
+        const timeLeftDisplay = document.getElementById('time-left');
+        const startButton = document.getElementById('start-button');
+        const resetButton = document.getElementById('reset-button');
+
+        // Set initial time to 5 minutes (300 seconds)
+        let time = 60 * 10; 
+
+        let countdownInterval = null;
+        let remainingTime = time;
+
+        const formatTime = (seconds) => {
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = seconds % 60;
+            return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+        };
+
+        const updateDisplay = () => {
+            timeLeftDisplay.textContent = formatTime(remainingTime);
+
+            // Change background and text color when 30 seconds or less remain
+            if (remainingTime <= 30) {
+                document.body.style.backgroundColor = 'red';
+                timeLeftDisplay.style.color = 'white';
+            } else {
+                document.body.style.backgroundColor = 'white';
+                timeLeftDisplay.style.color = 'black';
+            }
+        };
+
+        const countdown = () => {
+            if (remainingTime > 0) {
+                remainingTime--;
+                updateDisplay();
+                countdownInterval = setTimeout(countdown, 1000);
+            } else {
+                // When timer reaches 0
+                timeLeftDisplay.style.color = '#773344';
+                document.body.style.backgroundColor = 'white';
+                startButton.disabled = false;
+                resetButton.disabled = true;
+            }
+        };
+
+        const startTimer = () => {
+            startButton.disabled = true;
+            resetButton.disabled = false;
+            if (countdownInterval === null) {
+                countdown();
+            }
+        };
+
+        const resetTimer = () => {
+            clearTimeout(countdownInterval);
+            countdownInterval = null;
+            remainingTime = time;
+            updateDisplay();
+            startButton.disabled = false;
+            resetButton.disabled = true;
+        };
+
+        startButton.addEventListener('click', startTimer);
+        resetButton.addEventListener('click', resetTimer);
+
+        updateDisplay();
+    </script>
+</body>
+
+</html>
