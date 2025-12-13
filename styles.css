@@ -10,6 +10,14 @@ body {
     flex-direction: column;
 }
 
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
 body:before {
     content: "";
     display: block;
@@ -23,18 +31,20 @@ body:before {
 }
 
 #ayah {
-    height: 8vw;
+    height: clamp(3rem, 8vw, 15rem);
     min-height: 3em;
 }
 
 #translation {
-    font-size: 1.5vw;
+    font-size: clamp(1rem, 2.5vw, 2rem);
     color: white;
     font-family: 'Cormorant', serif;
+    padding: 0 1rem;
+    text-align: center;
 }
 
 @media screen and (max-width: 600px) {
     #translation {
-        font-size: 1.1vh;
+        font-size: clamp(0.9rem, 4vw, 1.2rem);
     }
 }
