@@ -27,3 +27,7 @@
 #translation.fadeIn {
     animation-delay: 2s;
 }
+
+#portfolio.fadeIn {
+    animation-delay: 4s;
+}
