@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Portfolio - Mutarjim</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of projects including chat, countdown, and waqt.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../styles.css">
+    <link rel="stylesheet" type="text/css" href="../anim.css">
+    <style>
+        h1 {
+            color: white;
+            font-family: 'Cormorant', serif;
+            font-size: clamp(2rem, 8vw, 4rem);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        #portfolio-list {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .portfolio-item {
+            color: white;
+            text-decoration: none;
+            font-family: 'Cormorant', serif;
+            font-size: clamp(1.2rem, 4vw, 2rem);
+            opacity: 0.6;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid transparent;
+        }
+
+        .portfolio-item:hover {
+            opacity: 1;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.05em;
+        }
+
+        .back-link {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            color: white;
+            text-decoration: none;
+            font-family: 'Cormorant', serif;
+            font-size: 1.2rem;
+            opacity: 0.4;
+            transition: opacity 0.3s;
+        }
+
+        .back-link:hover {
+            opacity: 0.8;
+        }
+
+        /* Animation delays for this page */
+        .portfolio-item.delay-1 { animation-delay: 0.5s; }
+        .portfolio-item.delay-2 { animation-delay: 1.0s; }
+        .portfolio-item.delay-3 { animation-delay: 1.5s; }
+        .portfolio-item.delay-4 { animation-delay: 2.0s; }
+        h1.delay-1 { animation-delay: 0.5s; }
+    </style>
+</head>
+
+<body>
+    <a href="../" class="back-link fadeIn">← back</a>
+    <main>
+        <h1 class="fadeIn delay-1">Portfolio</h1>
+        <div id="portfolio-list">
+            <a class="portfolio-item fadeIn delay-2" href="../chat/">chat</a>
+            <a class="portfolio-item fadeIn delay-3" href="../countdown/">countdown</a>
+            <a class="portfolio-item fadeIn delay-4" href="https://github.com/siddiqmsf/waqt" target="_blank" rel="noopener noreferrer">waqt</a>
+        </div>
+    </main>
+</body>
+
+</html>
