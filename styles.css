@@ -48,3 +48,22 @@ body:before {
         font-size: clamp(0.9rem, 4vw, 1.2rem);
     }
 }
+
+#portfolio {
+    margin-top: 3rem;
+    display: flex;
+    gap: 2rem;
+}
+
+.portfolio-link {
+    color: white;
+    text-decoration: none;
+    font-family: 'Cormorant', serif;
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    opacity: 0.6;
+    transition: opacity 0.3s;
+}
+
+.portfolio-link:hover {
+    opacity: 1;
+}
