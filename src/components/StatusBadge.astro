@@ -1,0 +1,35 @@
+---
+import { cn } from "$lib/utils";
+import type { ProjectTag } from "../data/projects";
+
+interface Props {
+  tag: ProjectTag;
+  class?: string;
+}
+
+const { tag, class: className } = Astro.props;
+
+const tagStyles: Record<string, string> = {
+  PUBLIC: "bg-primary/20 text-primary border-primary/30",
+  ONGOING: "bg-primary/20 text-primary border-primary/30",
+  BETA: "bg-primary/20 text-primary border-primary/30",
+  PAUSED: "bg-warning/20 text-warning border-warning/30",
+  PROTOTYPE: "bg-warning/20 text-warning border-warning/30",
+  DEPRECATED: "bg-destructive/20 text-destructive border-destructive/30",
+  ARCHIVED: "bg-muted text-muted-foreground border-muted-foreground/20",
+  INTERNAL: "bg-secondary text-secondary-foreground border-border",
+  PRIVATE: "bg-secondary text-secondary-foreground border-border",
+};
+
+const style = tagStyles[tag] || "bg-secondary text-secondary-foreground";
+---
+
+<span
+  class={cn(
+    "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+    style,
+    className
+  )}
+>
+  {tag}
+</span>

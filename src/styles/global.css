@@ -1,0 +1,39 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --font-sans: 'Inter', sans-serif;
+  --radius: 0.5rem;
+  --color-background: oklch(0.145 0.014 260);
+  --color-foreground: oklch(0.92 0.008 260);
+  --color-card: oklch(0.17 0.012 195);
+  --color-card-foreground: oklch(0.92 0.008 260);
+  --color-popover: oklch(0.17 0.012 195);
+  --color-popover-foreground: oklch(0.92 0.008 260);
+  --color-primary: oklch(0.78 0.08 195);
+  --color-primary-foreground: oklch(0.17 0.04 195);
+  --color-secondary: oklch(0.25 0.015 195);
+  --color-secondary-foreground: oklch(0.85 0.02 195);
+  --color-muted: oklch(0.22 0.01 195);
+  --color-muted-foreground: oklch(0.6 0.02 195);
+  --color-accent: oklch(0.25 0.015 195);
+  --color-accent-foreground: oklch(0.85 0.02 195);
+  --color-destructive: oklch(0.55 0.18 25);
+  --color-destructive-foreground: oklch(0.95 0.02 25);
+  --color-border: oklch(0.3 0.01 195);
+  --color-input: oklch(0.3 0.01 195);
+  --color-ring: oklch(0.78 0.08 195);
+  --color-warning: oklch(0.75 0.1 85);
+  --color-warning-foreground: oklch(0.3 0.05 85);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+  }
+}

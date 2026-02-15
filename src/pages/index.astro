@@ -1,0 +1,83 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ProjectsGrid from "../components/ProjectsGrid.svelte";
+import { projects } from "../data/projects";
+---
+
+<Layout>
+	<main class="relative min-h-screen">
+		<div class="container mx-auto px-4 py-12 xl:max-w-7xl">
+			<div class="flex flex-col xl:flex-row xl:items-start xl:gap-20">
+				<!-- Left Sidebar: Hero Content -->
+				<header class="mb-16 xl:sticky xl:top-24 xl:mb-0 xl:w-1/3">
+					<div class="space-y-6">
+						<div>
+							<h1
+								class="text-64px font-black tracking-tighter text-foreground sm:text-7xl xl:text-8xl"
+							>
+								PORT<br class="hidden xl:block" />FOLIO
+							</h1>
+							<p
+								class="mt-4 text-xl font-medium tracking-tight text-primary"
+							>
+								Muhammad Siddiq
+							</p>
+						</div>
+
+						<p
+							class="max-w-md text-lg leading-relaxed text-muted-foreground"
+						>
+							Passionate Full Stack Developer and student at the
+							Islamic University of Madinah. Building modern,
+							efficient, and accessible web experiences.
+						</p>
+
+						<div class="flex flex-wrap gap-4 pt-4">
+							<a
+								href="mailto:contact@siddiq.dev"
+								class="text-sm font-bold tracking-widest uppercase hover:text-primary transition-colors"
+							>
+								Email
+							</a>
+							<span class="text-muted/30">/</span>
+							<a
+								href="https://github.com/almutarjim"
+								target="_blank"
+								class="text-sm font-bold tracking-widest uppercase hover:text-primary transition-colors"
+							>
+								GitHub
+							</a>
+							<span class="text-muted/30">/</span>
+							<a
+								href="https://gitlab.com/almutarjim"
+								target="_blank"
+								class="text-sm font-bold tracking-widest uppercase hover:text-primary transition-colors"
+							>
+								GitLab
+							</a>
+						</div>
+					</div>
+				</header>
+
+				<!-- Right Side: Projects Grid -->
+				<section class="flex-1 xl:max-w-5xl">
+					<ProjectsGrid client:load {projects} />
+				</section>
+			</div>
+
+			<footer
+				class="mt-24 border-t border-border/10 pt-8 text-center text-sm text-muted-foreground"
+			>
+				&copy; {new Date().getFullYear()} Muhammad Siddiq. Built with Astro
+				& Svelte.
+			</footer>
+		</div>
+	</main>
+</Layout>
+
+<style>
+	.text-64px {
+		font-size: clamp(4rem, 10vw, 8rem);
+		line-height: 0.9;
+	}
+</style>
