@@ -43,12 +43,32 @@ export const projects: Project[] = [
         filterCategory: 'public',
     },
     {
-        name: 'at-Tarjuman',
+        name: 'Portal PPMI Madinah',
         description:
-            'A comprehensive online directory featuring certified translators specializing in Indonesian to Arabic translations. Each profile includes detailed information to help you find the right translator for your needs.',
-        coverImage: 'tarjuman.webp',
-        tags: ['PUBLIC', 'PAUSED'],
-        url: 'https://at-tarjuman.github.io/',
+            'Portal data mahasiswa PPMI Madinah. Platform resmi untuk mengelola profil, informasi akademik, dan mengakses formulir penting terkait kemahasiswaan.',
+        coverImage: 'portal.png',
+        tags: ['PUBLIC'],
+        url: 'https://portal.ppmimadinah.com',
+        disabled: false,
+        filterCategory: 'public',
+    },
+    {
+        name: 'Tarjuman',
+        description:
+            'Jasa penerjemah tersumpah resmi untuk beasiswa Saudi. Diakui Kemenkumham & Kedutaan.',
+        coverImage: 'tarjuman.png',
+        tags: ['PUBLIC'],
+        url: 'https://tarjuman.org',
+        disabled: false,
+        filterCategory: 'public',
+    },
+    {
+        name: 'Faraid Academy',
+        description:
+            'Pelajari Ilmu Faraid (Waris Islam) melalui kursus interaktif, latihan soal, dan kompetisi.',
+        coverImage: 'faraidacademy.png',
+        tags: ['PUBLIC'],
+        url: 'https://faraidacademy.com',
         disabled: false,
         filterCategory: 'public',
     },
